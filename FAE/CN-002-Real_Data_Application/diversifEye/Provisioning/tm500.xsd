@@ -1,0 +1,2056 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Version: 3.4.0 -->
+<!-- 4nd April 2016 -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" version="1.00">
+ <!-- Common Rules -->
+  <xs:simpleType name="Allowable_UE_Range">
+    <xs:restriction base="xs:integer">
+      <xs:minInclusive value="1"/>
+      <xs:maxInclusive value="24000"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Allowable_UE_Id_Range">
+    <xs:restriction base="xs:integer">
+      <xs:minInclusive value="0"/>
+      <xs:maxInclusive value="23999"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Allowable_VLAN_Range">
+    <xs:restriction base="xs:integer">
+      <xs:minInclusive value="-1"/>
+      <xs:maxInclusive value="4095"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ipv4_Address">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])\.){3}(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ipv6_Address">
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+  <xs:simpleType name="MAC_Address">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[0-9a-fA-F]{2}:[0-9a-fA-F]{2}:[0-9a-fA-F]{2}:[0-9a-fA-F]{2}:[0-9a-fA-F]{2}:[0-9a-fA-F]{2}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="Mask_Bits">
+    <xs:simpleType>
+      <xs:restriction base="xs:unsignedInt">
+        <xs:minInclusive value="1"/>
+        <xs:maxInclusive value="65536"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:simpleType name="UE_Groupings">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="All"/>
+      <xs:enumeration value="None"/>
+      <xs:enumeration value="Odd"/>
+      <xs:enumeration value="Even"/>
+      <xs:enumeration value="List"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="UE_Groupings_no_list">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="All"/>
+      <xs:enumeration value="None"/>
+      <xs:enumeration value="Odd"/>
+      <xs:enumeration value="Even"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Common Elements -->
+  <xs:element name="Server_Host_Name">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:minLength value="1"/>
+        <xs:maxLength value="255"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Username" default="">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:minLength value="0"/>
+        <xs:maxLength value="255"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Password" default="">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:minLength value="0"/>
+        <xs:maxLength value="255"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Path">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:minLength value="0"/>
+        <xs:maxLength value="255"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Delay_Between_Commands" default="50">
+    <xs:simpleType>
+      <xs:restriction base="xs:unsignedInt">
+        <xs:minInclusive value="0"/>
+        <xs:maxInclusive value="3600000"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Delay_Between_Sessions" default="50">
+    <xs:simpleType>
+      <xs:restriction base="xs:unsignedInt">
+        <xs:minInclusive value="0"/>
+        <xs:maxInclusive value="3600000"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Delay_Between_Requests" default="50">
+    <xs:simpleType>
+      <xs:restriction base="xs:unsignedInt">
+        <xs:minInclusive value="0"/>
+        <xs:maxInclusive value="600000"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Delay_Between_Connections" default="50">
+    <xs:simpleType>
+      <xs:restriction base="xs:unsignedInt">
+        <xs:minInclusive value="0"/>
+        <xs:maxInclusive value="600000"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="diversifEye_User">
+    <xs:simpleType>
+      <xs:restriction base="xs:unsignedInt">
+        <xs:minInclusive value="1"/>
+        <xs:maxInclusive value="6"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="diversifEye_Card">
+    <xs:simpleType>
+      <xs:restriction base="xs:unsignedInt">
+        <xs:minInclusive value="1"/>
+        <xs:maxInclusive value="99"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="diversifEye_Port" default="0">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:enumeration value="0"/>
+        <xs:enumeration value="1"/>
+        <xs:enumeration value="3"/>
+        <xs:enumeration value="4"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="diversifEye_Configuration">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Description" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Use_Reduce" minOccurs="0" maxOccurs="1"/>               <!-- true or false, makes smaller xml output -->
+        <xs:element ref="Use_Scaled_Entities" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Use_Scaled_Pad_Increment" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="DiversifEye_Type" minOccurs="1" maxOccurs="1"/>         <!-- 500 or 8400, 500 default -->
+        <xs:element ref="Create_Statistic_Groups" minOccurs="0" maxOccurs="1"/>  <!-- true or false, optionally creates the Statistic Groups per client application -->
+        <xs:element ref="Normal_Statistics" minOccurs="0" maxOccurs="1"/>        <!-- true or false, optionally uses normal statistics (on by default) -->
+        <xs:element ref="Fine_Statistics" minOccurs="0" maxOccurs="1"/>          <!-- true or false, optionally uses fine statistics -->
+        <xs:element ref="Latency_Statistics" minOccurs="0" maxOccurs="1"/>       <!-- true or false, optionally uses Latency statistics -->
+        <xs:element ref="Background_Ping" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Use_per_Port_VoIP_Srv_Proxy" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Pooled_Mode" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Processing_Units" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Global_Settings" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="TM500" minOccurs="1" maxOccurs="1"/>
+        <xs:element ref="PPPoE" minOccurs="1" maxOccurs="1"/>
+        <xs:element ref="Application_Configuration" minOccurs="1" maxOccurs="1"/>
+        <xs:element ref="Threshold_Configuration" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Network_Configuration" minOccurs="1" maxOccurs="1"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Use_Reduce" type="xs:boolean" default="true"/>
+  <xs:element name="Create_Statistic_Groups" type="xs:boolean" default="true"/>
+  <xs:element name="Normal_Statistics" type="xs:boolean" default="true"/>
+  <xs:element name="Fine_Statistics" type="xs:boolean" default="true"/>
+  <xs:element name="Latency_Statistics" type="xs:boolean" default="false"/>
+  <xs:element name="Background_Ping">
+        <xs:complexType mixed="true">
+          <xs:attribute name="Ping_IP_Address" type="xs:string" default="4.2.2.2"/>
+          <xs:attribute name="Delay_Between_Pings" default="5000"/>
+          <xs:attribute name="Payload_Size" default="100"/>
+      </xs:complexType>
+  </xs:element>
+  <xs:element name="Use_per_Port_VoIP_Srv_Proxy" type="xs:boolean" default="true"/>
+  <xs:element name="DiversifEye_Type" default="500">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:enumeration value="500"/>
+        <xs:enumeration value="8400"/>
+        <xs:enumeration value="1000"/>
+        <xs:enumeration value="TeraVM"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Pooled_Mode" type="xs:boolean" default="false"/>
+  <xs:element name="Processing_Units" type="xs:unsignedInt" default="0"/>
+  <xs:element name="Global_Settings">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Wireless_call_answering_with_183_180_responses" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Send_early_media_if_183_session_progress_received" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Route_SIP_responses_using_VIA_field" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="SIP_Enable_PANI_headers" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="SIP_Access_Type" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="SIP_Access_Info" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="SIP_Access_Value" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="SIP_Number_of_Response_Fields" minOccurs="0" maxOccurs="1"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Wireless_call_answering_with_183_180_responses" type="xs:boolean" default="false"/>
+  <xs:element name="Send_early_media_if_183_session_progress_received" type="xs:boolean" default="false"/>
+  <xs:element name="Route_SIP_responses_using_VIA_field" type="xs:boolean" default="false"/>
+  <xs:element name="SIP_Enable_PANI_headers" type="xs:boolean" default="false"/>
+  <xs:element name="SIP_Access_Type" default="None">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:enumeration value="None"/>
+        <xs:enumeration value="IEEE-802.11a"/>
+        <xs:enumeration value="IEEE-802.11b"/>
+        <xs:enumeration value="3GPP-GERAN"/>
+        <xs:enumeration value="3GPP-UTRAN-FDD"/>
+        <xs:enumeration value="3GPP-UTRAN-TDD"/>
+        <xs:enumeration value="3GPP-CDMA2000"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="SIP_Access_Info" default="None">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:enumeration value="None"/>
+        <xs:enumeration value="cgi-3gpp"/>
+        <xs:enumeration value="utran-cell-id-3gpp"/>
+        <xs:enumeration value="extension-access-info"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="SIP_Access_Value" type="xs:string"/>
+  <xs:element name="SIP_Number_of_Response_Fields" type="xs:string"/>
+  <xs:element name="TM500">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Total_UEs" minOccurs="1" maxOccurs="1"/>
+        <xs:element ref="Minimum_UE_ID_Digits" minOccurs="0" maxOccurs="1"/>    <!-- Between 3 and 5, i.e. 000 and 00000 -->
+        <xs:element ref="PDNs_per_UE" minOccurs="1" maxOccurs="1"/>             <!-- Can be 1-8 -->
+        <xs:element ref="LAN_IP" minOccurs="1" maxOccurs="1"/>                  <!-- DTE external ip address, configured in TM500 boot-up (card configuration) -->
+        <xs:element ref="Test_Module_Port_Mapping" minOccurs="0" maxOccurs="unbounded"/>  <!-- only used for D1000 -->
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Total_UEs" type="Allowable_UE_Range"/>
+  <xs:element name="Minimum_UE_ID_Digits" default="4">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:minInclusive value="0"/>
+        <xs:maxInclusive value="5"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Test_Module_Port_Mapping">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Test_Module_Offset" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Test_Module_Number" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Test_Interface" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Pooled_Unit" minOccurs="0" maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attribute name="UE" type="xs:string"/>                                <!-- UE range that the section applies to.  Can be specified as a comma separated list of ranges or UE.  Ranges are defined as a first and last UE separated by '..' (two dots) or '-' (minus sign).  i.e. 0..10,13,18,35..50     The ranges and UEs above Total_UEs are ignored. -->
+      <xs:attribute name="PDN" type="xs:string"/>                               <!-- PDN range that the section applies to.  Can be specified as a comma separated list of ranges or PDN.  Ranges are defined as a first and last PDN separated by '..' (two dots) or '-' (minus sign).  i.e. 0..3,5     The ranges and PDNs above PDNs_per_UE  are ignored. -->
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Test_Module_Offset" default="0">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:enumeration value="0"/>
+        <xs:enumeration value="10"/>
+        <xs:enumeration value="20"/>
+        <xs:enumeration value="30"/>
+        <xs:enumeration value="40"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Test_Module_Number" default="10">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:enumeration value="10"/>
+        <xs:enumeration value="11"/>
+        <xs:enumeration value="12"/>
+        <xs:enumeration value="13"/>
+        <xs:enumeration value="14"/>
+        <xs:enumeration value="15"/>
+        <xs:enumeration value="20"/>
+        <xs:enumeration value="21"/>
+        <xs:enumeration value="22"/>
+        <xs:enumeration value="23"/>
+        <xs:enumeration value="24"/>
+        <xs:enumeration value="25"/>
+        <xs:enumeration value="30"/>
+        <xs:enumeration value="31"/>
+        <xs:enumeration value="32"/>
+        <xs:enumeration value="33"/>
+        <xs:enumeration value="34"/>
+        <xs:enumeration value="35"/>
+        <xs:enumeration value="40"/>
+        <xs:enumeration value="41"/>
+        <xs:enumeration value="42"/>
+        <xs:enumeration value="43"/>
+        <xs:enumeration value="44"/>
+        <xs:enumeration value="45"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Test_Interface" default="0">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:enumeration value="0"/>
+        <xs:enumeration value="1"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Pooled_Unit" default="1">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:minInclusive value="0"/>
+        <xs:maxInclusive value="99"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="PDNs_per_UE">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:minInclusive value="1"/>
+        <xs:maxInclusive value="8"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="LAN_IP" type="ipv4_Address" default="99.99.99.99"/>
+  <xs:element name="Threshold_Configuration">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Threshold" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Threshold">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Name" minOccurs="1" maxOccurs="1"/>                    <!-- A Unique name for the threshold. -->
+        <xs:element ref="Rule" minOccurs="1" maxOccurs="1"/>                    <!-- The threshold rule, To be XML compliant use &gt; and &lt; for the greater than and less than -->
+        <xs:element ref="Regular_Expression" minOccurs="1" maxOccurs="1"/>      <!-- The regular expression for selecting the targets -->
+        <xs:element ref="Start_Test_Delay" minOccurs="1" maxOccurs="1"/>        <!-- in seconds -->
+        <xs:element ref="Violation_Trigger" minOccurs="0" maxOccurs="1"/>         <!-- The number of continuous statistical samples for which the Threshold must be violated before a Threshold Violation Event is generated.  Integer between 1 and 10000 -->
+        <xs:element ref="Clear_Trigger" minOccurs="0" maxOccurs="1"/>             <!-- The number of continuous statistical samples for which the Threshold must be cleared before a Threshold Clear Event is generated.  Integer between 1 and 10000 -->
+        <xs:element ref="Event_Tag" minOccurs="1" maxOccurs="1"/>               <!-- To be XML compliant use &gt; and &lt; for the greater than and less than -->
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Use_Scaled_Entities" type="xs:boolean" default="false"/>
+  <xs:element name="Use_Scaled_Pad_Increment" type="xs:boolean" default="false"/>
+  <xs:element name="Name" type="xs:string"/>
+  <xs:element name="Rule" type="xs:string"/>
+  <xs:element name="Regular_Expression" type="xs:string"/>
+  <xs:element name="Start_Test_Delay">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:minInclusive value="0"/>
+        <xs:maxInclusive value="3600"/> <!-- 60 minutes -->
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Violation_Trigger">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:minInclusive value="1"/>
+        <xs:maxInclusive value="10000"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Clear_Trigger">
+      <xs:simpleType>
+        <xs:restriction base="xs:integer">
+          <xs:minInclusive value="1"/>
+          <xs:maxInclusive value="10000"/>
+        </xs:restriction>
+      </xs:simpleType>
+  </xs:element>
+  <xs:element name="Event_Tag" type="xs:string"/>
+  <xs:element name="Network_Configuration">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="IPv4" minOccurs="1" maxOccurs="1"/>
+        <xs:element ref="IPv6" minOccurs="1" maxOccurs="1"/>
+        <xs:element ref="TCP_Characteristics" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Flow_Processors" minOccurs="0" maxOccurs="1"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Domain">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:minLength value="1"/>
+        <xs:maxLength value="255"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="SIP_Auth_Username">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:minLength value="1"/>
+        <xs:maxLength value="255"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Flow_Processors">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Ma3" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Ma4" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Ma5" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Ma6" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Ma7" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Ma8" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Ma10" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Ma11" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Ma12" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Ma13" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Ma14" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Ma15" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Ma20" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Ma21" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Ma22" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Ma23" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Ma24" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Ma25" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Ma30" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Ma31" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Ma32" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Ma33" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Ma34" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Ma35" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Ma36" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Ma37" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Ma38" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Ma39" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Ma40" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Ma41" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Ma42" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Ma43" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Ma44" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Ma45" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Ma46" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Ma47" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Ma48" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Ma49" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Ma50" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Ma51" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Ma52" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Ma53" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Ma54" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Ma55" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Ma56" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Ma57" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Ma58" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Ma59" minOccurs="0" maxOccurs="1"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Ma3" type="MAC_Address"/>
+  <xs:element name="Ma4" type="MAC_Address"/>
+  <xs:element name="Ma5" type="MAC_Address"/>
+  <xs:element name="Ma6" type="MAC_Address"/>
+  <xs:element name="Ma7" type="MAC_Address"/>
+  <xs:element name="Ma8" type="MAC_Address"/>
+  <xs:element name="Ma10" type="MAC_Address"/>
+  <xs:element name="Ma11" type="MAC_Address"/>
+  <xs:element name="Ma12" type="MAC_Address"/>
+  <xs:element name="Ma13" type="MAC_Address"/>
+  <xs:element name="Ma14" type="MAC_Address"/>
+  <xs:element name="Ma15" type="MAC_Address"/>
+  <xs:element name="Ma20" type="MAC_Address"/>
+  <xs:element name="Ma21" type="MAC_Address"/>
+  <xs:element name="Ma22" type="MAC_Address"/>
+  <xs:element name="Ma23" type="MAC_Address"/>
+  <xs:element name="Ma24" type="MAC_Address"/>
+  <xs:element name="Ma25" type="MAC_Address"/>
+  <xs:element name="Ma30" type="MAC_Address"/>
+  <xs:element name="Ma31" type="MAC_Address"/>
+  <xs:element name="Ma32" type="MAC_Address"/>
+  <xs:element name="Ma33" type="MAC_Address"/>
+  <xs:element name="Ma34" type="MAC_Address"/>
+  <xs:element name="Ma35" type="MAC_Address"/>
+  <xs:element name="Ma36" type="MAC_Address"/>
+  <xs:element name="Ma37" type="MAC_Address"/>
+  <xs:element name="Ma38" type="MAC_Address"/>
+  <xs:element name="Ma39" type="MAC_Address"/>
+  <xs:element name="Ma40" type="MAC_Address"/>
+  <xs:element name="Ma41" type="MAC_Address"/>
+  <xs:element name="Ma42" type="MAC_Address"/>
+  <xs:element name="Ma43" type="MAC_Address"/>
+  <xs:element name="Ma44" type="MAC_Address"/>
+  <xs:element name="Ma45" type="MAC_Address"/>
+  <xs:element name="Ma46" type="MAC_Address"/>
+  <xs:element name="Ma47" type="MAC_Address"/>
+  <xs:element name="Ma48" type="MAC_Address"/>
+  <xs:element name="Ma49" type="MAC_Address"/>
+  <xs:element name="Ma50" type="MAC_Address"/>
+  <xs:element name="Ma51" type="MAC_Address"/>
+  <xs:element name="Ma52" type="MAC_Address"/>
+  <xs:element name="Ma53" type="MAC_Address"/>
+  <xs:element name="Ma54" type="MAC_Address"/>
+  <xs:element name="Ma55" type="MAC_Address"/>
+  <xs:element name="Ma56" type="MAC_Address"/>
+  <xs:element name="Ma57" type="MAC_Address"/>
+  <xs:element name="Ma58" type="MAC_Address"/>
+  <xs:element name="Ma59" type="MAC_Address"/>
+  <xs:element name="IPv4">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Server_IP" minOccurs="1" maxOccurs="1"/>                      <!-- Start IPv4 address for any "v4_DVHS" servers configured  -->
+        <xs:element ref="Client_IP" minOccurs="0" maxOccurs="1"/>                      <!-- Client IPv4 for any "v4_DVH" hosts listed below with "Static" address assignment -->
+        <xs:element ref="Gateway_IP" minOccurs="1" maxOccurs="1"/>                     <!-- Gateway IPv4 address for any "v4_EHost" host named "v4_Client_GW" configured  -->
+        <xs:element ref="Client_Gateway_IP" minOccurs="0" maxOccurs="1"/>              <!-- Gateway IPv4 address for any other "v4_EHost" hosts configured -->
+        <xs:element ref="Client_Subnet_IP" minOccurs="0" maxOccurs="1"/>               <!-- IP subnet address for any "CSH" hosts -->
+        <xs:element ref="Client_IP_Batch_Start_Address" minOccurs="0" maxOccurs="1"/>  <!-- Start IP address for any "CSH" client apps -->
+        <xs:element ref="Core_Gateway_IP" minOccurs="0" maxOccurs="1"/>                <!-- Core Gateway IPv4 address for any "v4_EHost" configured on the core -->
+        <xs:element ref="Mask_Bits" minOccurs="0" maxOccurs="1"/>                      <!-- Optionally configure the subnet bit mask -->
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Server_IP" type="ipv4_Address" default="99.99.99.99"/>
+  <xs:element name="Client_IP" type="ipv4_Address" default="99.99.99.99"/>
+  <xs:element name="Gateway_IP" type="ipv4_Address" default="99.99.99.99"/>
+  <xs:element name="Client_Gateway_IP" type="ipv4_Address" default="99.99.99.99"/>
+  <xs:element name="Client_Subnet_IP" type="ipv4_Address" default="99.99.99.99"/>
+  <xs:element name="Client_IP_Batch_Start_Address" type="xs:string"/>
+  <xs:element name="Core_Gateway_IP" type="ipv4_Address" default="99.99.99.99"/>
+  <xs:element name="IPv6">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Server_IPv6" minOccurs="1" maxOccurs="1"/>             <!-- Start IPv6 address for any "v6_DVHS" servers configured below -->
+        <xs:element ref="Client_IPv6" minOccurs="0" maxOccurs="1"/>             <!-- Client IPv6 for any "v6_DVH" hosts listed below with "Static" address assignment -->
+        <xs:element ref="Gateway_IPv6" minOccurs="1" maxOccurs="1"/>            <!-- Gateway IPv6 address for any other "v6_EHost" hosts configured below -->
+        <xs:element ref="Client_Gateway_IPv6" minOccurs="0" maxOccurs="1"/>     <!-- Gateway IPv6 address for any "v6_EHost" host named "v6_Client_GW" configured below -->
+        <xs:element ref="Core_Gateway_IPv6" minOccurs="0" maxOccurs="1"/>       <!-- Core Gateway IPv6 address for any "v6_EHost" configured on the core -->
+        <xs:element ref="Mask_Bits" minOccurs="0" maxOccurs="1"/>               <!-- Optionally configure the subnet bit mask -->
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Server_IPv6" type="xs:string" default="2001:0db8:3c4d:0015:0000:0000:abcd:ef12" />
+  <xs:element name="Client_IPv6" type="xs:string" default="2001:0db8:3c4d:0015:0000:0000:abcd:ef12"/>
+  <xs:element name="Gateway_IPv6" type="xs:string" default="2001:0db8:3c4d:0015:0000:0000:abcd:ef12"/>
+  <xs:element name="Client_Gateway_IPv6" type="xs:string" default="2001:0db8:3c4d:0015:0000:0000:abcd:ef12"/>
+  <xs:element name="Core_Gateway_IPv6" type="xs:string" default="2001:0db8:3c4d:0015:0000:0000:abcd:ef12"/>
+  <xs:element name="PPPoE">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="MAC_Start" minOccurs="0" maxOccurs="1"/>                     <!-- arbitrary start MAC address for all PPPoE hosts -->
+        <xs:element ref="diversifEye_User" minOccurs="0" maxOccurs="1"/>              <!-- User 1 is 10 to User 6 is 15 -->
+        <xs:element ref="diversifEye_Port" minOccurs="1" maxOccurs="1"/>              <!-- 0 or 1 (0=client side, 1=server side normally)  [NB on d500, 10/0-15/0 map to VLAN ID 10-15, while 10/1-15/1 map to VLAN iD 16-21] -->
+        <xs:element ref="MTU" minOccurs="0" maxOccurs="1"/>                           <!-- MTU size, default 1492 -->
+        <xs:element ref="PAP_Authentication" minOccurs="0" maxOccurs="1"/>            <!-- PPP login authentication option for PAP -->
+        <xs:element ref="CHAP_Authentication" minOccurs="0" maxOccurs="1"/>           <!-- PPP login authentication option for CHAP -->
+        <xs:element ref="Create_Default_PPPoE_Client" minOccurs="0" maxOccurs="1"/>   <!-- default PPPoE client (host) - useful for debugging available service names (no service name configured, so TM500 returns all available) -->
+        <xs:element ref="VLAN_Tag" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="IPv6_PPPoE_Client" minOccurs="0" maxOccurs="1"/>             <!-- Defines specific UE / PDN combination for the PPPoE hosts to be configured as IPv6 hosts.  Careful configuration of ranges should then be applied throughout the server and client sections.  If no range is defined then all hosts will be IPv6.  If a specific range is applied then hosts outside of that range will remain as IPv4. -->
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="MAC_Start" type="MAC_Address"/>
+  <xs:element name="PAP_Authentication" type="xs:boolean" default="false"/>
+  <xs:element name="CHAP_Authentication" type="xs:boolean" default="false"/>
+  <xs:element name="MTU" type="xs:string" default="1492"/>
+  <xs:element name="Create_Default_PPPoE_Client" type="xs:boolean" default="false"/>
+  <xs:element name="VLAN_Tag" type="Allowable_VLAN_Range"/>
+  <xs:element name="IPv6_PPPoE_Client">
+      <xs:complexType>
+        <xs:attribute name="UE" type="xs:string"/>                                <!-- UE range that the section applies to.  Can be specified as a comma separated list of ranges or UE.  Ranges are defined as a first and last UE separated by '..' (two dots) or '-' (minus sign).  i.e. 0..10,13,18,35..50     The ranges and UEs above Total_UEs are ignored. -->
+        <xs:attribute name="PDN" type="xs:string"/>                               <!-- PDN range that the section applies to.  Can be specified as a comma separated list of ranges or PDN.  Ranges are defined as a first and last PDN separated by '..' (two dots) or '-' (minus sign).  i.e. 0..3,5     The ranges and PDNs above PDNs_per_UE  are ignored. -->
+      </xs:complexType>
+  </xs:element>
+  <xs:element name="Application_Configuration">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Server" minOccurs="1" maxOccurs="unbounded"/>
+        <xs:element ref="Client_Profiles" minOccurs="1" maxOccurs="1"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Server">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="diversifEye_User" minOccurs="0" maxOccurs="1"/>        <!-- User 1 is 10 to User 6 is 15, optionally used to override the global partition mapping-->
+        <xs:element ref="diversifEye_Card" minOccurs="0" maxOccurs="1"/>        <!-- Card 10 to 15, optionally used to override the partition mapping-->
+        <xs:element ref="diversifEye_Port" minOccurs="1" maxOccurs="1"/>        <!-- 0 or 1 (0=client side, 1=server side normally)  [NB on d500, 10/0-15/0 map to VLAN ID 10-15, while 10/1-15/1 map to VLAN iD 16-21] -->
+        <xs:element ref="Type" minOccurs="1" maxOccurs="1"/>                    <!-- Internal, External -->
+        <xs:element ref="Ip_Version" minOccurs="1" maxOccurs="1"/>              <!-- 4 = IPv4, 6 = IPv6 -->
+        <xs:element ref="Application" minOccurs="1" maxOccurs="1"/>             <!-- HTTP, FTP, VoIP, RTSP, TWAMP -->
+        <xs:element ref="Host_Name" minOccurs="1" maxOccurs="1"/>               <!-- Used in Client Profiles -->
+        <xs:element ref="Gateway_IP" minOccurs="0" maxOccurs="1"/>              <!-- Gateway IP if there is one -->
+        <xs:element ref="IP_Address" minOccurs="0" maxOccurs="1"/>              <!-- For External Servers:  This is Mandatory, Tthe IP address of the external application server. -->
+                                                                                <!-- For Internal Servers, this is Optional, the value is used,  If  this element is not present (removed) then the diversiEye will allocate an IP address from the range from the Server_IP element in the IP address section. -->
+        <xs:element ref="Physical_Location" minOccurs="0" maxOccurs="1"/>       <!-- Internal server located either on the Edge d500 or the Core d500 -->
+        <xs:element ref="VLAN_Tag" minOccurs="0" maxOccurs="1"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Type" default="External">
+      <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:enumeration value="Internal"/>
+        <xs:enumeration value="External"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Ip_Version">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:enumeration value="4"/>
+        <xs:enumeration value="6"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Application" default="HTTP">
+      <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:enumeration value="HTTP"/>
+        <xs:enumeration value="FTP"/>
+        <xs:enumeration value="VoIP"/>
+        <xs:enumeration value="VoIMS"/>
+        <xs:enumeration value="RTSP"/>
+        <xs:enumeration value="TWAMP"/>
+        <xs:enumeration value="PING"/>
+        <xs:enumeration value="TeraFlow"/>
+        <xs:enumeration value="MLD"/>
+        <xs:enumeration value="IGMP"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Host_Name">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:minLength value="1"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="IP_Address">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:minLength value="1"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Physical_Location" default="Edge">
+      <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:enumeration value="Edge"/>
+        <xs:enumeration value="Core"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Client_Profiles">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Default" minOccurs="0" maxOccurs="1"/>                 <!-- Default section -->
+        <xs:element ref="Profile_0" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Profile_1" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Profile_2" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Profile_3" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Profile_4" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Profile_5" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Profile_6" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Profile_7" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Profile_8" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Profile_9" minOccurs="0" maxOccurs="1"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Default">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="FTP_Get" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="FTP_Put" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="HTTP" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="SHTTP" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="VoIP" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="VoIMS" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="RTSP" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="TWAMP" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="cPing" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="sPing" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="TeraFlow" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="MLD" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="IGMP" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FTP_Get">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Alias" minOccurs="0" maxOccurs="1"/>                   <!-- Optionally override the application name prefix, if missing the default is used. -->
+        <xs:element ref="Description" minOccurs="0" maxOccurs="1"/>             <!-- Optionally override the application Description, if missing the default is used. -->
+        <xs:element ref="Server_Host_Name" minOccurs="1" maxOccurs="1"/>        <!-- FTP server name for all FTP clients (should be configured as in the Server section) -->
+        <xs:element ref="Path" minOccurs="1" maxOccurs="1"/>                    <!-- FTP put/get path prefix for all clients -->
+        <xs:element ref="Delay_Between_Commands" minOccurs="0" maxOccurs="1"/>  <!-- in ms -->
+        <xs:element ref="Delay_Between_Sessions" minOccurs="0" maxOccurs="1"/>  <!-- in ms -->
+        <xs:element ref="Username" minOccurs="0" maxOccurs="1"/>                <!-- FTP login credentials for all FTP clients, i.e. user%UE_ID% => user000, user001 ... user999 (up to Total_UEs) -->
+        <xs:element ref="Password" minOccurs="0" maxOccurs="1"/>                <!-- FTP login credentials for all FTP clients, i.e. password%UE_ID% => password000, password001 ... password999 (up to Total_UEs) -->
+        <xs:element ref="File_Size" minOccurs="0" maxOccurs="1"/>               <!-- File size to get in bytes -->
+        <xs:element ref="FTP_Mode" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="TCP_Characteristics" minOccurs="0" maxOccurs="1"/>     <!-- Advanced TCP Settings -->
+      </xs:sequence>
+      <xs:attribute name="UE" type="xs:string"/>                                <!-- UE range that the section applies to.  Can be specified as a comma separated list of ranges or UE.  Ranges are defined as a first and last UE separated by '..' (two dots) or '-' (minus sign).  i.e. 0..10,13,18,35..50     The ranges and UEs above Total_UEs are ignored. -->
+      <xs:attribute name="PDN" type="xs:string"/>                               <!-- PDN range that the section applies to.  Can be specified as a comma separated list of ranges or PDN.  Ranges are defined as a first and last PDN separated by '..' (two dots) or '-' (minus sign).  i.e. 0..3,5     The ranges and PDNs above PDNs_per_UE  are ignored. -->
+      <xs:attribute name="UE_Pattern" default="All" type="UE_Groupings_no_list" />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FTP_Put">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Alias" minOccurs="0" maxOccurs="1"/>                   <!-- Optionally override the application name prefix, if missing the default is used. -->
+        <xs:element ref="Description" minOccurs="0" maxOccurs="1"/>             <!-- Optionally override the application Description, if missing the default is used. -->
+        <xs:element ref="Server_Host_Name" minOccurs="1" maxOccurs="1"/>        <!-- FTP server name for all FTP clients (should be configured as in the Server section) -->
+        <xs:element ref="Path" minOccurs="1" maxOccurs="1"/>                    <!-- FTP put/get path prefix for all clients -->
+        <xs:element ref="Delay_Between_Commands" minOccurs="0" maxOccurs="1"/>  <!-- in ms -->
+        <xs:element ref="Delay_Between_Sessions" minOccurs="0" maxOccurs="1"/>  <!-- in ms -->
+        <xs:element ref="Username" minOccurs="0" maxOccurs="1"/>                <!-- FTP login credentials for all FTP clients, i.e. user%UE_ID% => user000, user001 ... user999 (up to Total_UEs) -->
+        <xs:element ref="Password" minOccurs="0" maxOccurs="1"/>                <!-- FTP login credentials for all FTP clients, i.e. password%UE_ID% => password000, password001 ... password999 (up to Total_UEs) -->
+        <xs:element ref="Ftp_Put_Path_Shared" minOccurs="0" maxOccurs="1"/>     <!-- If set, the rest of the FTP put path for all clients - otherwise, put path is constructed as "FtpPutPath"_<UE>_<PDN> -->
+        <xs:element ref="File_Size" minOccurs="0" maxOccurs="1"/>               <!-- File size to get in bytes -->
+        <xs:element ref="FTP_Mode" minOccurs="0" maxOccurs="1"/>                <!-- FTP Mode, Active or Passive (default) -->
+        <xs:element ref="TCP_Characteristics" minOccurs="0" maxOccurs="1"/>     <!-- Advanced TCP Settings -->
+      </xs:sequence>
+      <xs:attribute name="UE" type="xs:string"/>                                <!-- UE range that the section applies to.  Can be specified as a comma separated list of ranges or UE.  Ranges are defined as a first and last UE separated by '..' (two dots) or '-' (minus sign).  i.e. 0..10,13,18,35..50     The ranges and UEs above Total_UEs are ignored. -->
+      <xs:attribute name="PDN" type="xs:string"/>                               <!-- PDN range that the section applies to.  Can be specified as a comma separated list of ranges or PDN.  Ranges are defined as a first and last PDN separated by '..' (two dots) or '-' (minus sign).  i.e. 0..3,5     The ranges and PDNs above PDNs_per_UE  are ignored. -->
+      <xs:attribute name="UE_Pattern" default="All" type="UE_Groupings_no_list" />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Alias">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:minLength value="1"/>
+        <xs:maxLength value="12"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Description">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:maxLength value="255"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="FTP_Mode" default="Passive">
+      <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:enumeration value="Passive"/>
+        <xs:enumeration value="Active"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="TCP_Characteristics">
+    <xs:complexType>
+      <xs:sequence>
+         <xs:element ref="Window_Scale" minOccurs="0" maxOccurs="1"/>                          <!-- Window scale = 4 (=2^4=16), None, 0 - 14, default is None (not present). Configuring a window scale of 0 means no scaling but the actual TCP window scale of 0 will be specified as a TCP option -->
+         <xs:element ref="Use_SACK_When_Permitted" minOccurs="0" maxOccurs="1"/>              <!-- Use SACK when permitted = true (true or false) -->
+         <xs:element ref="Set_SACK_Permitted" minOccurs="0" maxOccurs="1"/>                   <!-- Set SACK permitted = true (true or false) -->
+         <xs:element ref="Max_Advertised_Received_Window_Size" minOccurs="0" maxOccurs="1"/>  <!-- Max advertised Received Window Size = 32768 (=32kiB), 2 * MSS to 65525 bytes -->
+         <xs:element ref="Max_Transmit_Buffer_Size" minOccurs="0" maxOccurs="1"/>             <!-- Max Transmit Buffer Size = 524288 (=16*32kiB=512kiB), 65536 to 1073741824 -->
+         <xs:element ref="Support_Timestamp_when_requested" minOccurs="0" maxOccurs="1"/>     <!-- Indicates if the receiving end of the TCP will support Timestamping when requested = false (true or false) -->
+         <xs:element ref="Request_Timestamp" minOccurs="0" maxOccurs="1"/>                    <!-- Indicates if the TCP timestamp option will be included in the SYN segment of TCP header = false (true or false) -->
+
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Use_SACK_When_Permitted" type="xs:boolean" default="true"/>
+  <xs:element name="Set_SACK_Permitted" type="xs:boolean" default="true"/>
+  <xs:element name="Support_Timestamp_when_requested" type="xs:boolean" default="false"/>
+  <xs:element name="Request_Timestamp" type="xs:boolean" default="false"/>
+  <xs:element name="Window_Scale">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:minInclusive value="0"/>
+        <xs:maxInclusive value="14"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Max_Advertised_Received_Window_Size">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:minInclusive value="2"/>
+        <xs:maxInclusive value="65525"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Max_Transmit_Buffer_Size">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:minInclusive value="65536"/>
+        <xs:maxInclusive value="1073741824"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Call_Duration">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:minInclusive value="0"/>
+        <xs:maxInclusive value="604800000"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Initial_Call_Delay">
+      <xs:simpleType>
+        <xs:restriction base="xs:integer">
+          <xs:minInclusive value="1"/>
+          <xs:maxInclusive value="86400000"/>
+        </xs:restriction>
+      </xs:simpleType>
+  </xs:element>
+  <xs:element name="File_Size">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:minInclusive value="0"/>
+        <xs:maxInclusive value="1073741824"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Ftp_Put_Path_Shared">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:minLength value="1"/>
+        <xs:maxLength value="255"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="HTTP">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Alias" minOccurs="0" maxOccurs="1"/>                      <!-- Optionally override the application name prefix, if missing the default is used. -->
+        <xs:element ref="Description" minOccurs="0" maxOccurs="1"/>                <!-- Optionally override the application Description, if missing the default is used. -->
+        <xs:element ref="Server_Host_Name" minOccurs="1" maxOccurs="1"/>           <!-- HTTP server name for all HTTP clients (should be configured as in the Server section) -->
+        <xs:element ref="Http_Operation" minOccurs="0" maxOccurs="1"/>             <!-- Choice of GET, POST or HEAD -->
+        <xs:element ref="Use_TLS" minOccurs="0" maxOccurs="1"/>                    <!-- Enable TLS support, (also changes port number to 443), true of false (default) -->
+        <xs:element ref="Path" minOccurs="0" maxOccurs="1"/>                       <!-- Full HTTP get/post/head URI (either relative, or could contain "HTTP://" etc.) -->
+        <xs:element ref="File_Size" minOccurs="0" maxOccurs="1"/>                  <!-- File size to get in bytes, used for the definition of internal (diversifEye) HTTP server content, default is 15Kb -->
+        <xs:element ref="POST_Content" minOccurs="0" maxOccurs="1"/>               <!-- Post content in ASCII -->
+        <xs:element ref="Delay_Between_Requests" minOccurs="0" maxOccurs="1"/>     <!-- in ms -->
+        <xs:element ref="Delay_Between_Connections" minOccurs="0" maxOccurs="1"/>  <!-- in ms -->
+        <xs:element ref="Username" minOccurs="0" maxOccurs="1"/>                   <!-- HTTP login credentials for all HTTP clients, i.e. user%UE_ID% => user000, user001 ... user999 (up to Total_UEs) -->
+        <xs:element ref="Password" minOccurs="0" maxOccurs="1"/>                   <!-- HTTP login credentials for all HTTP clients, i.e. password%UE_ID% => password000, password001 ... password999 (up to Total_UEs) -->
+        <xs:element ref="Http_Adaptive_Streaming" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="TCP_Characteristics" minOccurs="0" maxOccurs="1"/>        <!-- Advanced TCP Settings -->
+      </xs:sequence>
+      <xs:attribute name="UE" type="xs:string"/>                                   <!-- UE range that the section applies to.  Can be specified as a comma separated list of ranges or UE.  Ranges are defined as a first and last UE separated by '..' (two dots) or '-' (minus sign).  i.e. 0..10,13,18,35..50     The ranges and UEs above Total_UEs are ignored. -->
+      <xs:attribute name="PDN" type="xs:string"/>                                  <!-- PDN range that the section applies to.  Can be specified as a comma separated list of ranges or PDN.  Ranges are defined as a first and last PDN separated by '..' (two dots) or '-' (minus sign).  i.e. 0..3,5     The ranges and PDNs above PDNs_per_UE  are ignored. -->
+      <xs:attribute name="UE_Pattern" default="All" type="UE_Groupings_no_list" />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SHTTP">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Alias" minOccurs="0" maxOccurs="1"/>                      <!-- Optionally override the application name prefix, if missing the default is used. -->
+        <xs:element ref="Description" minOccurs="0" maxOccurs="1"/>                <!-- Optionally override the application Description, if missing the default is used. -->
+        <xs:element ref="Ip_Version" minOccurs="0" maxOccurs="1"/>                 <!-- Optionally allow the configuration for IPv4 or IPv6, if missing the default of ipv4 is used -->
+        <xs:element ref="Use_TLS" minOccurs="0" maxOccurs="1"/>                    <!-- Enable TLS support, (also changes port number to 443), true of false (default) -->
+        <xs:element ref="TCP_Characteristics" minOccurs="0" maxOccurs="1"/>        <!-- Advanced TCP Settings -->
+      </xs:sequence>
+      <xs:attribute name="UE" type="xs:string"/>                                   <!-- UE range that the section applies to.  Can be specified as a comma separated list of ranges or UE.  Ranges are defined as a first and last UE separated by '..' (two dots) or '-' (minus sign).  i.e. 0..10,13,18,35..50     The ranges and UEs above Total_UEs are ignored. -->
+      <xs:attribute name="PDN" type="xs:string"/>                                  <!-- PDN range that the section applies to.  Can be specified as a comma separated list of ranges or PDN.  Ranges are defined as a first and last PDN separated by '..' (two dots) or '-' (minus sign).  i.e. 0..3,5     The ranges and PDNs above PDNs_per_UE  are ignored. -->
+      <xs:attribute name="UE_Pattern" default="All" type="UE_Groupings_no_list" />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Http_Operation" default="GET">
+      <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:enumeration value="GET"/>
+        <xs:enumeration value="POST"/>
+        <xs:enumeration value="HEAD"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Http_Adaptive_Streaming">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Http_Adaptive_Client_Type" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Http_Adaptive_Streaming_Method" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Shift_Up_Threshold" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Shift_Down_Threshold" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Fragment_Download_Algorithm" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Playout_Buffer_Delay" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Delay_Between_Fragments" minOccurs="0" maxOccurs="1"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Http_Adaptive_Client_Type" default="Apple HLS">
+      <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:enumeration value="Apple HLS"/>
+        <xs:enumeration value="Adobe Flash HDS"/>
+        <xs:enumeration value="Microsoft Smooth Streaming"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Http_Adaptive_Streaming_Method" default="Monitor Fragment Retrieval Time">
+      <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:enumeration value="None"/>
+        <xs:enumeration value="Monitor Fragment Bit Rate"/>
+        <xs:enumeration value="Monitor Fragment Retrieval Time"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Shift_Up_Threshold">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:minInclusive value="1"/>
+        <xs:maxInclusive value="100"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Shift_Down_Threshold">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:minInclusive value="1"/>
+        <xs:maxInclusive value="100"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Fragment_Download_Algorithm" default="Playout Buffer">
+      <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:enumeration value="No Delay"/>
+        <xs:enumeration value="At Fragment Play Rate"/>
+        <xs:enumeration value="Playout Buffer"/>
+        <xs:enumeration value="Delay between Fragments"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Playout_Buffer_Delay">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:minInclusive value="1"/>
+        <xs:maxInclusive value="3600"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Delay_Between_Fragments">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:minInclusive value="1"/>
+        <xs:maxInclusive value="3600"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Use_TLS" type="xs:boolean" default="false"/>
+  <xs:element name="POST_Content" type="xs:string"/>
+  <xs:element name="VoIP">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Alias" minOccurs="0" maxOccurs="1"/>                         <!-- Optionally override the application name prefix, if missing the default is used. -->
+        <xs:element ref="Description" minOccurs="0" maxOccurs="1"/>                   <!-- Optionally override the application Description, if missing the default is used. -->
+        <xs:element ref="SIP_Server" minOccurs="1" maxOccurs="1"/>                    <!-- SIP server for all VoIP clients (should be configured as in the Server section) -->
+        <xs:element ref="VoLTE" minOccurs="0" maxOccurs="1"/>                    <!-- VoLTE paramters for all VoIP clients -->
+        <xs:element ref="Call_Duration" minOccurs="0" maxOccurs="1"/>                 <!-- in ms, aka Average Hold Time, between 0 and 604800000 (168 hours, or 1 Week) -->
+        <xs:element ref="Initial_Call_Delay" minOccurs="0" maxOccurs="1"/>            <!-- in ms, A delay which can be applied before any calls are initiated by the UA, integer between 1 and 86400000 -->
+        <xs:element ref="VoIP_Media_Profile" minOccurs="0" maxOccurs="1"/>            <!-- Configuration for the media profile for these VoIP UAs -->
+                                                                                      <!-- Predefined calling pattern between UEs -->
+        <xs:element ref="Allow_Delay_Between_Calls" minOccurs="0" maxOccurs="1"/>     <!-- Allow Delay between Calls, true or false, default false -->
+        <xs:element ref="BHCA" minOccurs="0" maxOccurs="1"/>                          <!-- Busy Hour Call Attempts, only valid if Allow_Delay_Between_Calls is true -->
+        <xs:element ref="Mobile_Originated_Pattern" minOccurs="0" maxOccurs="1"/>     <!-- All, None, Odd, Even, List -->
+        <xs:element ref="Destination_Call_URI_Is_SIP" minOccurs="0" maxOccurs="1"/>   <!-- Only used if "Odd" or "Even" is defined in Mobile_Originated_Pattern, Forces the type to SIP  even if the username is numeric and appends the @domain, true or false (false is default and if missing) -->
+        <xs:element ref="Mobile_Originated_Call_List" minOccurs="0" maxOccurs="1"/>   <!-- Only used if "list" is defined in one of the above -->
+        <xs:element ref="Call_Answering_Delay" minOccurs="0" maxOccurs="1"/>          <!-- Delay in milliseconds before sending a final response accepting/rejecting a call. This can be a profile to inject variability into the delay answering the call, range between 0 and 30000 ms (30 secs) -->
+        <xs:element ref="Rtp_Port" minOccurs="0" maxOccurs="1"/>                      <!-- A port or a range of ports, i.e. 10-19 (starting even ending odd) -->
+        <xs:element ref="VoIP_Passive_Analysis" minOccurs="0" maxOccurs="1"/>         <!-- VoIP Passive Analysis parameters -->
+        <xs:element ref="TCP_Characteristics" minOccurs="0" maxOccurs="1"/>           <!-- Advanced TCP Settings, only used if the SIP transport Type is set to TCP -->
+        <xs:element ref="Latency_Statistics" minOccurs="0" maxOccurs="1"/>            <!-- true or false, optionally uses Latency statistics, for VoIP Clients this option will only be enabled if Passive Analysis is disabled and the client initiates the call. -->
+        <xs:element ref="Generate_Rtcp_Reports" minOccurs="0" maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attribute name="UE" type="xs:string"/>                                      <!-- UE range that the section applies to.  Can be specified as a comma separated list of ranges or UE.  Ranges are defined as a first and last UE separated by '..' (two dots) or '-' (minus sign).  i.e. 0..10,13,18,35..50     The ranges and UEs above Total_UEs are ignored. -->
+      <xs:attribute name="PDN" type="xs:string"/>                                     <!-- PDN range that the section applies to.  Can be specified as a comma separated list of ranges or PDN.  Ranges are defined as a first and last PDN separated by '..' (two dots) or '-' (minus sign).  i.e. 0..3,5     The ranges and PDNs above PDNs_per_UE  are ignored. -->
+      <xs:attribute name="UE_Pattern" default="All" type="UE_Groupings_no_list" />
+    </xs:complexType>
+  </xs:element>
+ <xs:element name="VoIMS">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Alias" minOccurs="0" maxOccurs="1"/>                         <!-- Optionally override the application name prefix, if missing the default is used. -->
+        <xs:element ref="Description" minOccurs="0" maxOccurs="1"/>                   <!-- Optionally override the application Description, if missing the default is used. -->
+        <xs:element ref="SIP_Server" minOccurs="1" maxOccurs="1"/>                    <!-- SIP server for all VoIP clients (should be configured as in the Server section) -->
+        <xs:element ref="VoLTE" minOccurs="0" maxOccurs="1"/>                    <!-- VoLTE paramters for all VoIP clients -->
+        <xs:element ref="Call_Duration" minOccurs="0" maxOccurs="1"/>                 <!-- in ms, aka Average Hold Time, between 0 and 604800000 (168 hours, or 1 Week) -->
+        <xs:element ref="Initial_Call_Delay" minOccurs="0" maxOccurs="1"/>            <!-- in ms, A delay which can be applied before any calls are initiated by the UA, integer between 1 and 86400000 -->
+        <xs:element ref="VoIP_Media_Profile" minOccurs="0" maxOccurs="1"/>            <!-- Configuration for the media profile for these VoIP UAs -->
+                                                                                      <!-- Predefined calling pattern between UEs -->
+        <xs:element ref="Allow_Delay_Between_Calls" minOccurs="0" maxOccurs="1"/>     <!-- Allow Delay between Calls, true or false, default false -->
+        <xs:element ref="BHCA" minOccurs="0" maxOccurs="1"/>                          <!-- Busy Hour Call Attempts, only valid if Allow_Delay_Between_Calls is true -->
+        <xs:element ref="Mobile_Originated_Pattern" minOccurs="0" maxOccurs="1"/>     <!-- All, None, Odd, Even, List -->
+        <xs:element ref="Destination_Call_URI_Is_SIP" minOccurs="0" maxOccurs="1"/>   <!-- Only used if "Odd" or "Even" is defined in Mobile_Originated_Pattern, Forces the type to SIP  even if the username is numeric and appends the @domain, true or false (false is default and if missing) -->
+        <xs:element ref="Mobile_Originated_Call_List" minOccurs="0" maxOccurs="1"/>   <!-- Only used if "list" is defined in one of the above -->
+        <xs:element ref="Call_Answering_Delay" minOccurs="0" maxOccurs="1"/>          <!-- Delay in milliseconds before sending a final response accepting/rejecting a call. This can be a profile to inject variability into the delay answering the call, range between 0 and 30000 ms (30 secs) -->
+        <xs:element ref="Rtp_Port" minOccurs="0" maxOccurs="1"/>                      <!-- A port or a range of ports, i.e. 10-19 (starting even ending odd) -->
+        <xs:element ref="VoIP_Passive_Analysis" minOccurs="0" maxOccurs="1"/>         <!-- VoIP Passive Analysis parameters -->
+        <xs:element ref="TCP_Characteristics" minOccurs="0" maxOccurs="1"/>           <!-- Advanced TCP Settings, only used if the SIP transport Type is set to TCP -->
+        <xs:element ref="Latency_Statistics" minOccurs="0" maxOccurs="1"/>            <!-- true or false, optionally uses Latency statistics, for VoIP Clients this option will only be enabled if Passive Analysis is disabled and the client initiates the call. -->
+        <xs:element ref="Generate_Rtcp_Reports" minOccurs="0" maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attribute name="UE" type="xs:string"/>                                      <!-- UE range that the section applies to.  Can be specified as a comma separated list of ranges or UE.  Ranges are defined as a first and last UE separated by '..' (two dots) or '-' (minus sign).  i.e. 0..10,13,18,35..50     The ranges and UEs above Total_UEs are ignored. -->
+      <xs:attribute name="PDN" type="xs:string"/>                                     <!-- PDN range that the section applies to.  Can be specified as a comma separated list of ranges or PDN.  Ranges are defined as a first and last PDN separated by '..' (two dots) or '-' (minus sign).  i.e. 0..3,5     The ranges and PDNs above PDNs_per_UE  are ignored. -->
+      <xs:attribute name="UE_Pattern" default="All" type="UE_Groupings_no_list" />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SIP_Server">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Server_Host_Name"/>                                    <!-- VoIP server name for all VoIP clients (should be configured as in the Server section) -->
+        <xs:element ref="Username" minOccurs="0" maxOccurs="1"/>                <!-- VoIP login credentials for all VoIP clients -->
+                                                                                <!-- i.e. voip-user%UE_ID% => voip-user000, voip-user001 ... voip-user999 (up to Total_UEs) -->
+                                                                                <!-- i.e. 44123456789012+%UE_ID% => 44123456789012, 44123456789013, 44123456789014 .... -->
+        <xs:element ref="Password" minOccurs="0" maxOccurs="1"/>                <!-- VoIP login credentials for all VoIP clients -->
+        <xs:element ref="Domain" minOccurs="0" maxOccurs="1"/>                  <!-- VoIP domain for all VoIP clients -->
+        <xs:element ref="SIP_Auth_Username" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="SIP_Transport_Port" minOccurs="0" maxOccurs="1"/>      <!-- VoIP port for SIP Transport traffic for all VoIP clients -->
+        <xs:element ref="SIP_Transport_Type" minOccurs="0" maxOccurs="1"/>      <!-- VoIP SIP Transport data type, UDP, TCP or TLS, for all VoIP clients -->
+        <xs:element ref="Register_With_Server" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Send_100_Trying" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Use_100_Rel_Prack" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Session_Timer" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Registration_Interval" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Client_IP_as_Domain" minOccurs="0" maxOccurs="1"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Send_100_Trying" type="xs:boolean" default="false"/>
+  <xs:element name="Use_100_Rel_Prack" type="xs:boolean" default="false"/>
+  <xs:element name="Session_Timer">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:minInclusive value="1"/>
+        <xs:maxInclusive value="3600"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Registration_Interval">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:minInclusive value="1"/>
+        <xs:maxInclusive value="8640"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Client_IP_as_Domain" type="xs:boolean" default="false"/>
+  <xs:element name="VoLTE">
+      <xs:complexType>
+        <xs:sequence>
+          <xs:element ref="AKA_Key" minOccurs="1" maxOccurs="1"/>
+          <xs:element ref="AKA_Operator_Id" minOccurs="0" maxOccurs="1"/>
+          <xs:element ref="Protected_SIP_Port" minOccurs="0" maxOccurs="1"/>
+          <xs:element ref="ESP_Encryption_Algorithm" minOccurs="0" maxOccurs="1"/>
+          <xs:element ref="ESP_Auth_Algorithm" minOccurs="0" maxOccurs="1"/>
+          <xs:element ref="SMS" minOccurs="0" maxOccurs="1"/>
+          <xs:element ref="Three_GPP_IMS_Multimedia" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+      </xs:complexType>
+  </xs:element>
+  <xs:element name="SMS">
+      <xs:complexType>
+        <xs:sequence>
+          <xs:element ref="SMS_Gateway" minOccurs="1" maxOccurs="1"/>
+          <xs:element ref="SMS_Recipient" minOccurs="0" maxOccurs="1"/>
+          <xs:element ref="SMS_Message" minOccurs="0" maxOccurs="1"/>
+          <xs:element ref="Number_of_SMS_in_a_Burst" minOccurs="0" maxOccurs="1"/>
+          <xs:element ref="Delay_between_each_SMS" minOccurs="0" maxOccurs="1"/>
+          <xs:element ref="Delay_between_Bursts" minOccurs="0" maxOccurs="1"/>
+          <xs:element ref="Initial_SMS_Delay" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+      </xs:complexType>
+  </xs:element>
+  <xs:element name="SMS_Gateway" type="xs:string"/>
+  <xs:element name="SMS_Recipient" type="xs:string"/>
+  <xs:element name="SMS_Message" type="xs:string"/>
+  <xs:element name="Number_of_SMS_in_a_Burst">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:minInclusive value="1"/>
+        <xs:maxInclusive value="65535"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Delay_between_each_SMS">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:minInclusive value="1"/>
+        <xs:maxInclusive value="65535"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Delay_between_Bursts">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:minInclusive value="1"/>
+        <xs:maxInclusive value="65535"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Initial_SMS_Delay">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:minInclusive value="1"/>
+        <xs:maxInclusive value="65535"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="AKA_Key" type="xs:string"/>
+  <xs:element name="AKA_Operator_Id" type="xs:string"/>
+  <xs:element name="Protected_SIP_Port">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:minInclusive value="1"/>
+        <xs:maxInclusive value="65535"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="ESP_Encryption_Algorithm" default="aes-cbc">
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="aes-cbc"/>
+          <xs:enumeration value="des-ede3-cbc"/>
+        </xs:restriction>
+      </xs:simpleType>
+  </xs:element>
+  <xs:element name="ESP_Auth_Algorithm" default="hmac-md5-96">
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="hmac-md5-96"/>
+          <xs:enumeration value="hmac-sha1-96"/>
+        </xs:restriction>
+      </xs:simpleType>
+  </xs:element>
+  <xs:element name="Three_GPP_IMS_Multimedia" type="xs:boolean" default="true"/>
+  <xs:element name="Playout_Jitter">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:minInclusive value="0"/>
+        <xs:maxInclusive value="65535"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Max_Jitter">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:minInclusive value="0"/>
+        <xs:maxInclusive value="65535"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Video_Codec" default="">
+      <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:enumeration value=""/>
+        <xs:enumeration value="Static"/>
+        <xs:enumeration value="JPEG"/>
+        <xs:enumeration value="MPEG"/>
+        <xs:enumeration value="H.261"/>
+        <xs:enumeration value="H.263"/>
+        <xs:enumeration value="H.263+"/>
+        <xs:enumeration value="H.264"/>
+        <xs:enumeration value="MPEG-4"/>
+        <xs:enumeration value="VC-1"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Audio_Codec" default="MPEG-1 Layer 1">
+      <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:enumeration value=""/>
+        <xs:enumeration value="AC-3"/>
+        <xs:enumeration value="MPEG-1 Layer 1"/>
+        <xs:enumeration value="MPEG-1 Layer 2"/>
+        <xs:enumeration value="MPEG-1 Layer 3"/>
+        <xs:enumeration value="MPEG-2 AAC"/>
+        <xs:enumeration value="MPEG-4 AAC"/>
+        <xs:enumeration value="MPEG-4 Low Delay AAC"/>
+        <xs:enumeration value="MPEG-4 High Efficiency AAC"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Analyse_MPEG2TS_ES" type="xs:boolean" default="false"/>
+  <xs:element name="Analyse_Audio_Stream" type="xs:boolean" default="false"/>
+  <xs:element name="Video_Pid">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:minInclusive value="16"/>
+        <xs:maxInclusive value="8192"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Audio_Pid">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:minInclusive value="16"/>
+        <xs:maxInclusive value="8192"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="VoIP_Passive_Analysis">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Playout_Jitter" minOccurs="0" maxOccurs="1"/>          <!-- The delay before received RTP packets are considered played in ms. -->
+        <xs:element ref="Max_Jitter" minOccurs="0" maxOccurs="1"/>              <!-- Maximum size of the jitter buffer in ms. -->
+        <xs:element ref="Media_Type" minOccurs="0" maxOccurs="1"/>              <!-- Type of Media to be Analysed, voice or video -->
+        <xs:element ref="Video_Codec" minOccurs="0" maxOccurs="1"/>             <!-- Used to select the expected video codec of the video stream for analysis. (JPEG,MPEG,H.261,H.263,H.263+,H.264,MPEG-4,VC-1) -->
+        <xs:element ref="Analyse_MPEG2TS_ES" minOccurs="0" maxOccurs="1"/>      <!-- Allows passive analysis on the MPEG2-TS packets embedded in the RTP stream. (true or false, false default) -->
+        <xs:element ref="Video_Pid" minOccurs="0" maxOccurs="1"/>               <!-- PID of the video elementary stream to be analysed. This allows the functionality for detecting the PID to be overridden.  If empty then the diversifEye will determine the appropriate PID from the incoming stream to analyze. (16-8192 or empty) -->
+      </xs:sequence>
+      <xs:attribute name="Pattern" default="All" type="UE_Groupings_no_list" />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RTSP_Passive_Analysis">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Playout_Jitter" minOccurs="0" maxOccurs="1"/>          <!-- The delay before packets are considered played in ms. -->
+        <xs:element ref="Max_Jitter" minOccurs="0" maxOccurs="1"/>              <!-- Maximum size of the jitter buffer in ms. -->
+        <xs:element ref="Video_Codec" minOccurs="0" maxOccurs="1"/>             <!-- Used to select the expected video codec of the video stream for analysis. Default MPEG, (Static,JPEG,MPEG,H.261,H.263,H.263+,H.264,MPEG-4,VC-1) -->
+        <xs:element ref="Analyse_Audio_Stream" minOccurs="0" maxOccurs="1"/>    <!-- If the audio portion of a stream will be analysed, true or false, default false. -->
+        <xs:element ref="Audio_Codec" minOccurs="0" maxOccurs="1"/>             <!-- Used for passive analysis of the audio stream. default MPEG-1 Layer 1 (AC-3, MPEG-1 Layer 1, MPEG-1 Layer 2, MPEG-1 Layer 3, MPEG-2 AAC, MPEG-4 AAC, MPEG-4 Low Delay AAC, MPEG-4 High Efficiency AAC) -->
+        <xs:element ref="Video_Pid" minOccurs="0" maxOccurs="1"/>               <!-- PID of the video elementary stream to be analysed. This allows the functionality for detecting the PID to be overridden.  If empty then the diversifEye will determine the appropriate PID from the incoming stream to analyze.  Cannot be the same as Audio_Pid and Audio_Pid must be configured. (16-8192 or empty) -->
+        <xs:element ref="Audio_Pid" minOccurs="0" maxOccurs="1"/>               <!-- PID of the audio elementary stream to be analysed. This allows the functionality for detecting the PID to be overridden.  If empty then the diversifEye will determine the appropriate PID from the incoming stream to analyze.  Cannot be the same as Video_Pid and Video_Pid must be configured. (16-8192 or empty) -->
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="VoIP_Media_Profile">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Media_Type" minOccurs="0" maxOccurs="1"/>              <!-- The type of media associated with this codec, Voice or Multimedia -->
+        <xs:element ref="RTP_Data" minOccurs="0" maxOccurs="1"/>                <!-- 'Full Duplex', 'Half Duplex Send', 'Half Duplex Receive' -->
+        <xs:element ref="RTCP" minOccurs="0" maxOccurs="1"/>                    <!-- Only valid if Media Type is voice, Indicates if RTCP is to be enabled for this call. true (default) or false -->
+        <xs:element ref="Silence_Suppression" minOccurs="0" maxOccurs="1"/>     <!-- true or false, only if Media Type is voice -->
+        <xs:element ref="Silence_Ratio" minOccurs="0" maxOccurs="1"/>           <!-- Only used if Silence_Suppression is true, the percentage time that Silence Suppression should be turned on. Range 20% - 80% -->
+        <xs:element ref="Silence_Length" minOccurs="0" maxOccurs="1"/>          <!-- Only used if Silence_Suppression is true, the length of silence suppression intervals in milliseconds, integer range between 1000ms - 60000ms -->
+        <xs:element ref="Codec" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="Adaptive_AMR_List" minOccurs="0" maxOccurs="1"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RTSP_Media_Profile">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Media_Type" minOccurs="0" maxOccurs="1"/>              <!-- The type of media associated with this codec, Voice or Multimedia -->
+        <xs:element ref="RTP_Data" minOccurs="0" maxOccurs="1"/>                <!-- 'Full Duplex', 'Half Duplex Send', 'Half Duplex Receive' -->
+        <xs:element ref="RTCP" minOccurs="0" maxOccurs="1"/>                    <!-- Only valid if Media Type is voice, Indicates if RTCP is to be enabled for this call. true (default) or false -->
+        <xs:element ref="Silence_Suppression" minOccurs="0" maxOccurs="1"/>     <!-- true or false, only if Media Type is voice -->
+        <xs:element ref="Silence_Ratio" minOccurs="0" maxOccurs="1"/>           <!-- Only used if Silence_Suppression is true, the percentage time that Silence Suppression should be turned on. Range 20% - 80% -->
+        <xs:element ref="Silence_Length" minOccurs="0" maxOccurs="1"/>          <!-- Only used if Silence_Suppression is true, the length of silence suppression intervals in milliseconds, integer range between 1000ms - 60000ms -->
+        <xs:element ref="Codec" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="Adaptive_AMR_List" minOccurs="0" maxOccurs="1"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Media_Type" default="Voice">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:enumeration value="Voice"/>
+        <xs:enumeration value="Multimedia"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="RTP_Data" default="Full Duplex">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:enumeration value="Full Duplex"/>
+        <xs:enumeration value="Half Duplex Send"/>
+        <xs:enumeration value="Half Duplex Receive"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="RTCP" type="xs:boolean" default="true"/>
+  <xs:element name="Silence_Suppression" type="xs:boolean" default="true"/>
+  <xs:element name="Silence_Ratio">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:minInclusive value="20"/>
+        <xs:maxInclusive value="80"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Silence_Length">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:minInclusive value="1000"/>
+        <xs:maxInclusive value="60000"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="SIP_Transport_Type" default="UDP">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:enumeration value="UDP"/>
+        <xs:enumeration value="TCP"/>
+        <xs:enumeration value="TLS"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Codec">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Codec_Name" minOccurs="0" maxOccurs="1"/>              <!-- custom name (between 3 and 32 characters) or use a predefined one ('Default CTS AAC-LD', 'Default CTS H.264', 'Default G.711a (PCMA)', 'Default G.711u (PCM)', 'Default G.722 (ACELP)', 'Default G.723 5.3 kbits/s (MP-MLQ)', 'Default G.723 6.3 kbits/s (MP-MLQ)', 'Default G.728', 'Default G.729', 'Default GSM', 'Default iLBC 13.33 kbits/s', 'Default iLBC 15.2 kbits/s', 'MPEG2') -->
+        <xs:element ref="Codec_Used_For" minOccurs="0" maxOccurs="1"/>          <!-- Voice, Streaming or PCAP -->
+        <xs:element ref="Codec_Encoding_Name" minOccurs="0" maxOccurs="1"/>     <!-- Custom (between 3 and 32 characters) or predefined one ('mpeg4-generic', 'H.264', 'PCMA', 'PCMU', 'G722', 'G723', 'G728', 'G729', 'GSM', 'iLBC') -->
+        <xs:element ref="Codec_Media_Type" minOccurs="0" maxOccurs="1"/>        <!-- Only if Codec_Used_For is streaming, 'audio' or 'video' -->
+        <xs:element ref="Codec_Payload_Type" minOccurs="0" maxOccurs="1"/>      <!-- Identifies the RTP AVP, range 0-127 (0 - 96 is defined by IANA) -->
+        <xs:element ref="Codec_Payload_Size" minOccurs="0" maxOccurs="1"/>      <!-- Payload octets to be carried in each RTP packet, range between 1 and 1446 -->
+        <xs:element ref="Codec_ms_Packet" minOccurs="0" maxOccurs="1"/>         <!-- Only if Media_Type is audio, range of 1.0 - 1000000.0 ms -->
+        <xs:element ref="Codec_Stream_Rate" minOccurs="0" maxOccurs="1"/>       <!-- Only if Media_Type is Multimedia, in kbits/sec, between 16 and 5000000 -->
+        <xs:element ref="Codec_Frequency" minOccurs="0" maxOccurs="1"/>         <!-- The frequency or clock rate for this codec.8000 (default) - 200,000 Hz.-->
+        <xs:element ref="Codec_Channels" minOccurs="0" maxOccurs="1"/>          <!-- Only if Media_Type is audio, Number of audio channels for this codec. Default is None, valid values are 1 and 2 -->
+        <xs:element ref="Codec_Data_File" minOccurs="0" maxOccurs="1"/>         <!-- Empty for arbitrary data or just the file name or path relative to /home/cli WARNING - If the file does not exist in /home/cli then provisioning WILL fail, MUST contain enough data for least one RTP packet, the file size must be at least the number of bytes specified by the Codec_Payload_Size -->
+        <xs:element ref="SDP_Attributes" minOccurs="0" maxOccurs="1"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Codec_Name">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:minLength value="3"/>
+        <xs:maxLength value="32"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Codec_Used_For" default="Voice">
+      <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:enumeration value="Voice"/>
+        <xs:enumeration value="Streaming"/>
+        <xs:enumeration value="PCAP"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Codec_Encoding_Name">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:minLength value="3"/>
+        <xs:maxLength value="32"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Codec_Media_Type" default="audio">
+      <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:enumeration value="audio"/>
+        <xs:enumeration value="video"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Codec_Payload_Type">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:minInclusive value="0"/>
+        <xs:maxInclusive value="127"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Codec_Payload_Size">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:minInclusive value="0"/>
+        <xs:maxInclusive value="1446"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Codec_ms_Packet">
+    <xs:simpleType>
+      <xs:restriction base="xs:decimal">
+        <xs:minInclusive value="1.0"/>
+        <xs:maxInclusive value="1000000.0"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Codec_Delay">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:minInclusive value="10"/>
+        <xs:maxInclusive value="1000000"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Codec_Stream_Rate">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:minInclusive value="16"/>
+        <xs:maxInclusive value="5000000"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Codec_Frequency">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:minInclusive value="0"/>
+        <xs:maxInclusive value="300000000"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Codec_Channels" default="None">
+      <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:enumeration value="None"/>
+        <xs:enumeration value="1"/>
+        <xs:enumeration value="2"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Codec_Data_File" type="xs:string"/>
+  <xs:element name="SDP_Attributes" type="xs:string"/>
+  <xs:element name="Register_With_Server" type="xs:boolean" default="true"/>
+  <xs:element name="Allow_Delay_Between_Calls" type="xs:boolean" default="false"/>
+  <xs:element name="BHCA">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:minInclusive value="1"/>
+        <xs:maxInclusive value="1200000"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Call_Answering_Delay">
+      <xs:simpleType>
+        <xs:restriction base="xs:integer">
+          <xs:minInclusive value="0"/>
+          <xs:maxInclusive value="30000"/>
+        </xs:restriction>
+      </xs:simpleType>
+  </xs:element>
+  <xs:element name="Mobile_Originated_Pattern" default="List" type="UE_Groupings"/>
+  <xs:element name="Mobile_Originated_Call_List">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="UE" minOccurs="1" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Destination_Call_URI_Is_SIP" type="xs:boolean" default="false"/>
+  <xs:element name="UE">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="UE_Id" minOccurs="1" maxOccurs="1"/>
+        <xs:element ref="Call" minOccurs="1" maxOccurs="1"/>                    <!-- space seperated list -->
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UE_Id">
+    <xs:simpleType>
+      <xs:union memberTypes="Allowable_UE_Id_Range UE_Groupings_no_list xs:string"/>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Rtp_Port" type="xs:string"/>
+  <xs:element name="Generate_Rtcp_Reports" type="xs:boolean" default="false"/>
+  <xs:element name="Call" type="xs:string"/>
+  <xs:element name="RTSP">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Alias" minOccurs="0" maxOccurs="1"/>                   <!-- Optionally override the application name prefix, if missing the default is used. -->
+        <xs:element ref="Description" minOccurs="0" maxOccurs="1"/>             <!-- Optionally override the application Description, if missing the default is used. -->
+        <xs:element ref="Server_Host_Name" minOccurs="1" maxOccurs="1"/>        <!-- RSTP server name for all RTSP clients (should be configured as in the Server section) -->
+        <xs:element ref="Path" minOccurs="0" maxOccurs="1"/>                    <!-- RTSP path to the media resource -->
+        <xs:element ref="RTSP_Media_Profile" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Username" minOccurs="0" maxOccurs="1"/>                <!-- RTSP login credentials for all clients -->
+        <xs:element ref="Password" minOccurs="0" maxOccurs="1"/>                <!-- RTSP login credentials for all clients -->
+        <xs:element ref="Use_Initial_Authentication" minOccurs="0" maxOccurs="1"/>  <!-- Indicates whether or not to use initial authentication. If username/password supplied then include authentication details in initial DESCRIBE request.  true or false (default)-->
+        <xs:element ref="TCP_Characteristics" minOccurs="0" maxOccurs="1"/>     <!-- Advanced TCP Settings, only if Media_Stream_Method = TCP -->
+        <xs:element ref="Media_Stream_Method" minOccurs="0" maxOccurs="1"/>     <!-- The method used to stream the media packets to the client. UDP or TCP -->
+        <xs:element ref="Media_Transport" minOccurs="0" maxOccurs="1"/>         <!-- Protocol used to encapsulate media to be streamed. MPEG2-TS/RTP, MPEG2-TS (UDP only) and RTP (Default).-->
+        <xs:element ref="Media_Inactivity_Timeout" minOccurs="0" maxOccurs="1"/>      <!-- If no media packets are received on a stream for a period in excess of this time-out then the RTSP session is torn down. Range 1-60000 ms. Default is 1000ms. -->
+        <xs:element ref="Media_Stream_Duration" minOccurs="0" maxOccurs="1"/>   <!-- Method of controlling the stream duration. Options are Indefinite, Data or Time (Default). -->
+        <xs:element ref="Media_Stream_Duration_Period_of_Time" minOccurs="0" maxOccurs="1"/>  <!-- The stream duration defined by a time period (ms), used if Media_Stream_Duration = Time.  range 0 - 86400000 ms (default 900)-->
+        <xs:element ref="Media_Stream_Amount_Of_Data" minOccurs="0" maxOccurs="1"/>           <!-- The amount of Kbytes streamed, used if Media_Stream_Duration = Data. Range 1 - 4194304,  (default - 10240 [10Mbytes]). -->
+        <xs:element ref="Delay_Between_Sessions" minOccurs="0" maxOccurs="1"/>  <!-- in ms -->
+        <xs:element ref="Start_After" minOccurs="0" maxOccurs="1"/>             <!-- Time (ms) after which the RTSP client application will start.  Range 0 - 300000 (ms). Missing (default) then diversifEye will work out an appropriate value based on the number of client applications configured in the test group. -->
+        <xs:element ref="Stop_After" minOccurs="0" maxOccurs="1"/>              <!-- Duration of time (sec) after an RTSP client task has started, that it will run for, before automatically stopping. Range 1 - 86400 (secs).  Missing (default) means it will run forever or until stopped manually. -->
+        <xs:element ref="Media_Port" minOccurs="0" maxOccurs="1"/>              <!-- A port or a range of ports, i.e. 10-19 (starting even ending odd) -->
+        <xs:element ref="RTSP_Passive_Analysis" minOccurs="0" maxOccurs="1"/>   <!-- RTSP Passive Analysis parameters -->
+      </xs:sequence>
+      <xs:attribute name="UE" type="xs:string"/>                                <!-- UE range that the section applies to.  Can be specified as a comma separated list of ranges or UE.  Ranges are defined as a first and last UE separated by '..' (two dots) or '-' (minus sign).  i.e. 0..10,13,18,35..50     The ranges and UEs above Total_UEs are ignored. -->
+      <xs:attribute name="PDN" type="xs:string"/>                               <!-- PDN range that the section applies to.  Can be specified as a comma separated list of ranges or PDN.  Ranges are defined as a first and last PDN separated by '..' (two dots) or '-' (minus sign).  i.e. 0..3,5     The ranges and PDNs above PDNs_per_UE  are ignored. -->
+      <xs:attribute name="UE_Pattern" default="All" type="UE_Groupings_no_list" />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Media_Port" type="xs:string"/>
+  <xs:element name="Media_Stream_Method" default="UDP">
+      <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:enumeration value="UDP"/>
+        <xs:enumeration value="TCP"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Media_Transport" default="RTP">
+      <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:enumeration value="RTP"/>
+        <xs:enumeration value="MPEG2-TS"/>
+        <xs:enumeration value="MPEG2-TS/RTP"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Media_Inactivity_Timeout">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:minInclusive value="1"/>
+        <xs:maxInclusive value="60000"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Media_Stream_Duration" default="Time">
+      <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:enumeration value="Indefinite"/>
+        <xs:enumeration value="Data"/>
+        <xs:enumeration value="Time"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Media_Stream_Amount_Of_Data">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:minInclusive value="1"/>
+        <xs:maxInclusive value="4194304"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Media_Stream_Duration_Period_of_Time">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:minInclusive value="0"/>
+        <xs:maxInclusive value="86400000"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Use_Initial_Authentication" type="xs:boolean" default="false"/>
+  <xs:element name="Start_After">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:minInclusive value="0"/>
+        <xs:maxInclusive value="300000"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Stop_After">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:minInclusive value="1"/>
+        <xs:maxInclusive value="86400"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="TWAMP">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Alias" minOccurs="0" maxOccurs="1"/>                       <!-- Optionally override the application name prefix, if missing the default is used. -->
+        <xs:element ref="Description" minOccurs="0" maxOccurs="1"/>                 <!-- Optionally override the application Description, if missing the default is used. -->
+        <xs:element ref="Server_Host_Name" minOccurs="1" maxOccurs="1"/>            <!-- TWAMP server name for all TWAMP clients (should be configured as in the Server section) -->
+        <xs:element ref="Control_Port" minOccurs="0" maxOccurs="1"/>                <!-- TCP Port that the TWAMP Server will listen on for incoming Control Session connections. 0 to 65535.  Default is 861 if missing/empty or zero -->
+        <xs:element ref="Control_QoS" minOccurs="0" maxOccurs="1"/>                 <!-- IP ToS/Diffserv bits for the Server's Control Sessions. Value between 0 and 255. Default is 0. -->
+        <xs:element ref="Source_Port" minOccurs="0" maxOccurs="1"/>                 <!-- The UDP source port the Client will use for the Test Sessions. If missing/empty or zero will 'use next available' -->
+        <xs:element ref="Destination_Port" minOccurs="0" maxOccurs="1"/>            <!-- The UDP destination port the Client will attempt use for the Test Sessions If missing/empty or zero will 'use next available' -->
+        <xs:element ref="Session_QoS" minOccurs="0" maxOccurs="1"/>                 <!-- IP ToS/Diffserv bits for the Client's Test Sessions. Value between 0 and 255. Default is 0. -->
+        <xs:element ref="Delay_Between_Packets" minOccurs="1" maxOccurs="1"/>       <!-- Delay between UDP packets in Test Session.in ms, value between 1 and 3600000 (ms)  Default 100 ms -->
+        <xs:element ref="Payload_Size" minOccurs="1" maxOccurs="1"/>                <!-- UDP Payload Size for Test Session packets, default 100 -->
+        <xs:element ref="Indefinite_Session_Duration" minOccurs="0" maxOccurs="1"/> <!-- If the session duration is indefinite, true or false (default). If true then Session_Duration is ignored -->
+        <xs:element ref="Session_Duration" minOccurs="0" maxOccurs="1"/>            <!-- Duration of each Test Session, in seconds, only if Indefinite_Session_Duration is false.  Value between 1 and 3600000000 ms, Default 900 ms -->
+        <xs:element ref="Session_Timeout" minOccurs="1" maxOccurs="1"/>             <!-- The number of seconds the Reflector should wait after the Server receives a "Stop Session" command before ceasing to reflect incoming session packets, in seconds in ms, default is 0 s -->
+        <xs:element ref="TCP_Characteristics" minOccurs="0" maxOccurs="1"/>         <!-- Advanced TCP Settings -->
+      </xs:sequence>
+      <xs:attribute name="UE" type="xs:string"/>                                    <!-- UE range that the section applies to.  Can be specified as a comma separated list of ranges or UE.  Ranges are defined as a first and last UE separated by '..' (two dots) or '-' (minus sign).  i.e. 0..10,13,18,35..50     The ranges and UEs above Total_UEs are ignored. -->
+      <xs:attribute name="PDN" type="xs:string"/>                                   <!-- PDN range that the section applies to.  Can be specified as a comma separated list of ranges or PDN.  Ranges are defined as a first and last PDN separated by '..' (two dots) or '-' (minus sign).  i.e. 0..3,5     The ranges and PDNs above PDNs_per_UE  are ignored. -->
+      <xs:attribute name="UE_Pattern" default="All" type="UE_Groupings_no_list" />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TeraFlow_Transport_Type" default="UDP">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:enumeration value="UDP"/>
+        <xs:enumeration value="TCP"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Server_on_PPPoE" type="xs:boolean" default="false"/>
+  <xs:element name="TeraFlow">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Alias" minOccurs="0" maxOccurs="1"/>                       <!-- Optionally override the application name prefix, if missing the default is used. -->
+        <xs:element ref="Description" minOccurs="0" maxOccurs="1"/>                 <!-- Optionally override the application Description, if missing the default is used. -->
+        <xs:element ref="Server_Host_Name" minOccurs="1" maxOccurs="1"/>            <!-- Tera Flow server name for all Tera Flow clients (should be configured as in the Server section) -->
+        <xs:element ref="Server_on_PPPoE" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Start_After" minOccurs="0" maxOccurs="1"/>                 <!-- Time (ms) after which the Tera Flow client application will start.  Range 0 - 300000 (ms). Missing (default) then diversifEye will work out an appropriate value based on the number of client applications configured in the test group. -->
+        <xs:element ref="Stop_After" minOccurs="0" maxOccurs="1"/>                  <!-- Duration of time (sec) after an Tera Flow client task has started, that it will run for, before automatically stopping. Range 1 - 86400 (secs).  Missing (default) means it will run forever or until stopped manually. -->
+        <xs:element ref="Throughput" minOccurs="0" maxOccurs="1"/>                  <!-- Throughput (default in Mbps, between 1 and 10000000 for mbps, default 10 Mbps -->
+        <xs:element ref="Throughput_Metric" minOccurs="0" maxOccurs="1"/>           <!-- Throughput Metric, bps, kbps, mbps, gbps, tbps, default mbps -->
+        <xs:element ref="TeraFlow_Transport_Type" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="TeraFlow_Transport_Port" minOccurs="0" maxOccurs="1"/>     <!-- If element is missing the next availlable is used -->
+        <xs:element ref="TeraFlow_Payload_Size" minOccurs="0" maxOccurs="1"/>       <!-- Payload Size in bytes for Tera Flow Session packets, default 8192 bytes -->
+        <xs:element ref="Number_of_Sessions" minOccurs="0" maxOccurs="1"/>          <!-- Number of Tera flow sessions, between 1 and 100000000, default 1 -->
+        <xs:element ref="TCP_Characteristics" minOccurs="0" maxOccurs="1"/>         <!-- Advanced TCP Settings -->
+        <xs:element ref="Latency_Statistics" minOccurs="0" maxOccurs="1"/>          <!-- true or false, optionally uses Latency statistics -->
+      </xs:sequence>
+      <xs:attribute name="UE" type="xs:string"/>                                    <!-- UE range that the section applies to.  Can be specified as a comma separated list of ranges or UE.  Ranges are defined as a first and last UE separated by '..' (two dots) or '-' (minus sign).  i.e. 0..10,13,18,35..50     The ranges and UEs above Total_UEs are ignored. -->
+      <xs:attribute name="PDN" type="xs:string"/>                                   <!-- PDN range that the section applies to.  Can be specified as a comma separated list of ranges or PDN.  Ranges are defined as a first and last PDN separated by '..' (two dots) or '-' (minus sign).  i.e. 0..3,5     The ranges and PDNs above PDNs_per_UE  are ignored. -->
+      <xs:attribute name="UE_Pattern" default="All" type="UE_Groupings_no_list" />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Throughput">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:minInclusive value="1"/>
+        <xs:maxInclusive value="10000000000000"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Throughput_Metric" default="mbps">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:enumeration value="bps"/>
+        <xs:enumeration value="kbps"/>
+        <xs:enumeration value="mbps"/>
+        <xs:enumeration value="gbps"/>
+        <xs:enumeration value="tbps"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="TeraFlow_Transport_Port">
+    <xs:simpleType>
+      <xs:restriction base="xs:unsignedInt">
+        <xs:minInclusive value="0"/>
+        <xs:maxInclusive value="65535"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="TeraFlow_Payload_Size">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:minInclusive value="1"/>
+        <xs:maxInclusive value="65535"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Number_of_Sessions">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:minInclusive value="1"/>
+        <xs:maxInclusive value="100000000"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="cPing">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Alias" minOccurs="0" maxOccurs="1"/>                       <!-- Optionally override the application name prefix, if missing the default is used. -->
+        <xs:element ref="Description" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Ping_IP_Address" minOccurs="0" maxOccurs="1"/>             <!-- The target IP Address to ping, overridden in MTS mode so not needed -->
+        <xs:element ref="Start_After" minOccurs="0" maxOccurs="1"/>                 <!-- Time (ms) after which the PING client application will start.  Range 0 - 300000 (ms). Missing (default) then diversifEye will work out an appropriate value based on the number of client applications configured in the test group. -->
+        <xs:element ref="Stop_After" minOccurs="0" maxOccurs="1"/>                  <!-- Duration of time (sec) after a PING client task has started, that it will run for, before automatically stopping. Range 1 - 86400 (secs).  Missing (default) means it will run forever or until stopped manually. -->
+        <xs:element ref="Delay_Between_Pings" minOccurs="0" maxOccurs="1"/>         <!-- Delay between UDP packets in Test Session.in ms, value between 1 and 3600000 (ms)  Default 5000 ms -->
+        <xs:element ref="Packet_Size" minOccurs="0" maxOccurs="1"/>                 <!-- UDP Payload Size for Test Session packets, default 100 -->
+      </xs:sequence>
+      <xs:attribute name="UE" type="xs:string"/>                                    <!-- UE range that the section applies to.  Can be specified as a comma separated list of ranges or UE.  Ranges are defined as a first and last UE separated by '..' (two dots) or '-' (minus sign).  i.e. 0..10,13,18,35..50     The ranges and UEs above Total_UEs are ignored. -->
+      <xs:attribute name="PDN" type="xs:string"/>                                   <!-- PDN range that the section applies to.  Can be specified as a comma separated list of ranges or PDN.  Ranges are defined as a first and last PDN separated by '..' (two dots) or '-' (minus sign).  i.e. 0..3,5     The ranges and PDNs above PDNs_per_UE  are ignored. -->
+      <xs:attribute name="UE_Pattern" default="All" type="UE_Groupings_no_list" />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="sPing">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Alias" minOccurs="0" maxOccurs="1"/>                       <!-- Optionally override the application name prefix, if missing the default is used. -->
+        <xs:element ref="Description" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Server_Host_Name" minOccurs="1" maxOccurs="1"/>            <!-- sPing server name for all sPing clients (should be configured as in the Server section) -->
+        <xs:element ref="Ping_IP_Address" minOccurs="0" maxOccurs="1"/>             <!-- The target IP Address to ping, overridden in MTS mode so not needed -->
+        <xs:element ref="Start_After" minOccurs="0" maxOccurs="1"/>                 <!-- Time (ms) after which the PING client application will start.  Range 0 - 300000 (ms). Missing (default) then diversifEye will work out an appropriate value based on the number of client applications configured in the test group. -->
+        <xs:element ref="Stop_After" minOccurs="0" maxOccurs="1"/>                  <!-- Duration of time (sec) after a PING client task has started, that it will run for, before automatically stopping. Range 1 - 86400 (secs).  Missing (default) means it will run forever or until stopped manually. -->
+        <xs:element ref="Delay_Between_Pings" minOccurs="0" maxOccurs="1"/>         <!-- Delay between UDP packets in Test Session.in ms, value between 1 and 3600000 (ms)  Default 5000 ms -->
+        <xs:element ref="Packet_Size" minOccurs="0" maxOccurs="1"/>                 <!-- UDP Payload Size for Test Session packets, default 100 -->
+      </xs:sequence>
+      <xs:attribute name="UE" type="xs:string"/>                                    <!-- UE range that the section applies to.  Can be specified as a comma separated list of ranges or UE.  Ranges are defined as a first and last UE separated by '..' (two dots) or '-' (minus sign).  i.e. 0..10,13,18,35..50     The ranges and UEs above Total_UEs are ignored. -->
+      <xs:attribute name="PDN" type="xs:string"/>                                   <!-- PDN range that the section applies to.  Can be specified as a comma separated list of ranges or PDN.  Ranges are defined as a first and last PDN separated by '..' (two dots) or '-' (minus sign).  i.e. 0..3,5     The ranges and PDNs above PDNs_per_UE  are ignored. -->
+      <xs:attribute name="UE_Pattern" default="All" type="UE_Groupings_no_list" />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="MLD">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Alias" minOccurs="0" maxOccurs="1"/>                       <!-- Optionally override the application name prefix, if missing the default is used. -->
+        <xs:element ref="Description" minOccurs="0" maxOccurs="1"/>                 <!-- Optionally override the application Description, if missing the default is used. -->
+        <xs:element ref="Server_Host_Name" minOccurs="1" maxOccurs="1"/>            <!-- MLD server name for all Tera Flow clients (should be configured as in the Server section) -->
+        <xs:element ref="Start_After" minOccurs="0" maxOccurs="1"/>                 <!-- Time (ms) after which the Tera Flow client application will start.  Range 0 - 300000 (ms). Missing (default) then diversifEye will work out an appropriate value based on the number of client applications configured in the test group. -->
+        <xs:element ref="Stop_After" minOccurs="0" maxOccurs="1"/>                  <!-- Duration of time (sec) after an Tera Flow client task has started, that it will run for, before automatically stopping. Range 1 - 86400 (secs).  Missing (default) means it will run forever or until stopped manually. -->
+        <xs:element ref="Media_Transport" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Payload_Size" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Data_Rate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Multicast_Group_Addrerss" minOccurs="1"/>
+        <xs:element ref="Source_Port" minOccurs="1" maxOccurs="1"/>
+        <xs:element ref="Destination_Port" minOccurs="1" maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attribute name="UE" type="xs:string"/>                                    <!-- UE range that the section applies to.  Can be specified as a comma separated list of ranges or UE.  Ranges are defined as a first and last UE separated by '..' (two dots) or '-' (minus sign).  i.e. 0..10,13,18,35..50     The ranges and UEs above Total_UEs are ignored. -->
+      <xs:attribute name="PDN" type="xs:string"/>                                   <!-- PDN range that the section applies to.  Can be specified as a comma separated list of ranges or PDN.  Ranges are defined as a first and last PDN separated by '..' (two dots) or '-' (minus sign).  i.e. 0..3,5     The ranges and PDNs above PDNs_per_UE  are ignored. -->
+      <xs:attribute name="UE_Pattern" default="All" type="UE_Groupings_no_list" />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IGMP">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Alias" minOccurs="0" maxOccurs="1"/>                       <!-- Optionally override the application name prefix, if missing the default is used. -->
+        <xs:element ref="Description" minOccurs="0" maxOccurs="1"/>                 <!-- Optionally override the application Description, if missing the default is used. -->
+        <xs:element ref="Server_Host_Name" minOccurs="1" maxOccurs="1"/>            <!-- IGMP server name for all Tera Flow clients (should be configured as in the Server section) -->
+        <xs:element ref="Start_After" minOccurs="0" maxOccurs="1"/>                 <!-- Time (ms) after which the Tera Flow client application will start.  Range 0 - 300000 (ms). Missing (default) then diversifEye will work out an appropriate value based on the number of client applications configured in the test group. -->
+        <xs:element ref="Stop_After" minOccurs="0" maxOccurs="1"/>                  <!-- Duration of time (sec) after an Tera Flow client task has started, that it will run for, before automatically stopping. Range 1 - 86400 (secs).  Missing (default) means it will run forever or until stopped manually. -->
+        <xs:element ref="Media_Transport" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Payload_Size" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Data_Rate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Multicast_Group_Addrerss" minOccurs="1" maxOccurs="1"/>
+        <xs:element ref="Source_Port" minOccurs="1" maxOccurs="1"/>
+        <xs:element ref="Destination_Port" minOccurs="1" maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attribute name="UE" type="xs:string"/>                                    <!-- UE range that the section applies to.  Can be specified as a comma separated list of ranges or UE.  Ranges are defined as a first and last UE separated by '..' (two dots) or '-' (minus sign).  i.e. 0..10,13,18,35..50     The ranges and UEs above Total_UEs are ignored. -->
+      <xs:attribute name="PDN" type="xs:string"/>                                   <!-- PDN range that the section applies to.  Can be specified as a comma separated list of ranges or PDN.  Ranges are defined as a first and last PDN separated by '..' (two dots) or '-' (minus sign).  i.e. 0..3,5     The ranges and PDNs above PDNs_per_UE  are ignored. -->
+      <xs:attribute name="UE_Pattern" default="All" type="UE_Groupings_no_list" />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Data_Rate">
+    <xs:simpleType>
+      <xs:restriction base="xs:unsignedInt">
+        <xs:minInclusive value="1"/>
+        <xs:maxInclusive value="200000"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Multicast_Group_Addrerss" type="xs:string"/>
+  <xs:element name="Ping_IP_Address" type="xs:string"/>
+  <xs:element name="Packet_Size">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:minInclusive value="41"/>
+        <xs:maxInclusive value="1464"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Delay_Between_Pings">
+    <xs:simpleType>
+      <xs:restriction base="xs:unsignedInt">
+        <xs:minInclusive value="1"/>
+        <xs:maxInclusive value="3600000"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="SIP_Transport_Port">
+    <xs:simpleType>
+      <xs:restriction base="xs:unsignedInt">
+        <xs:minInclusive value="0"/>
+        <xs:maxInclusive value="65535"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Control_Port">
+    <xs:simpleType>
+      <xs:restriction base="xs:unsignedInt">
+        <xs:minInclusive value="0"/>
+        <xs:maxInclusive value="65535"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Control_QoS">
+    <xs:simpleType>
+      <xs:restriction base="xs:unsignedInt">
+        <xs:minInclusive value="0"/>
+        <xs:maxInclusive value="255"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Source_Port">
+    <xs:simpleType>
+      <xs:restriction base="xs:unsignedInt">
+        <xs:minInclusive value="0"/>
+        <xs:maxInclusive value="65535"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Destination_Port">
+    <xs:simpleType>
+      <xs:restriction base="xs:unsignedInt">
+        <xs:minInclusive value="0"/>
+        <xs:maxInclusive value="65535"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Session_QoS">
+    <xs:simpleType>
+      <xs:restriction base="xs:unsignedInt">
+        <xs:minInclusive value="0"/>
+        <xs:maxInclusive value="255"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Delay_Between_Packets">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:minInclusive value="1"/>
+        <xs:maxInclusive value="3600000"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Payload_Size">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:minInclusive value="41"/>
+        <xs:maxInclusive value="1464"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Indefinite_Session_Duration" type="xs:boolean" default="false"/>
+  <xs:element name="Session_Duration">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:minInclusive value="1"/>
+        <xs:maxInclusive value="36000000000"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Session_Timeout">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:minInclusive value="0"/>
+        <xs:maxInclusive value="3600"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Adaptive_AMR_List">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Codec_Type" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Use_Default_List" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Level_List" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Change_Interval" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Change_List" minOccurs="0" maxOccurs="1"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Codec_Type" default="">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:enumeration value=""/>
+        <xs:enumeration value="AMR-NB"/>
+        <xs:enumeration value="AMR-WB"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Use_Default_List" type="xs:boolean" default="false"/>
+  <xs:element name="Level_List">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Level" minOccurs="1" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Level">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="BitRate" minOccurs="1" maxOccurs="1"/>
+        <xs:element ref="pCapFile" minOccurs="1" maxOccurs="1"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BitRate">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:minInclusive value="1"/>
+        <xs:maxInclusive value="200000"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="pCapFile" type="xs:string"/>
+  <xs:element name="Change_Interval">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:minInclusive value="0"/>
+        <xs:maxInclusive value="3600000"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Change_List">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Change_Entry" minOccurs="1" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Change_Entry">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:minInclusive value="1"/>
+        <xs:maxInclusive value="99"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Profile_0">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="FTP_Get" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="FTP_Put" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="HTTP" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="VoIP" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="RTSP" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="TWAMP" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="cPing" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="sPing" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="TeraFlow" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Profile_1">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="FTP_Get" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="FTP_Put" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="HTTP" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="VoIP" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="RTSP" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="TWAMP" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="cPing" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="sPing" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="TeraFlow" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Profile_2">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="FTP_Get" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="FTP_Put" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="HTTP" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="VoIP" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="RTSP" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="TWAMP" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="cPing" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="sPing" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="TeraFlow" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Profile_3">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="FTP_Get" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="FTP_Put" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="HTTP" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="VoIP" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="RTSP" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="TWAMP" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="cPing" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="sPing" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="TeraFlow" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Profile_4">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="FTP_Get" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="FTP_Put" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="HTTP" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="VoIP" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="RTSP" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="TWAMP" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="cPing" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="sPing" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="TeraFlow" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Profile_5">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="FTP_Get" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="FTP_Put" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="HTTP" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="VoIP" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="RTSP" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="TWAMP" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="cPing" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="sPing" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="TeraFlow" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Profile_6">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="FTP_Get" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="FTP_Put" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="HTTP" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="VoIP" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="RTSP" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="TWAMP" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="cPing" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="sPing" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="TeraFlow" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Profile_7">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="FTP_Get" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="FTP_Put" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="HTTP" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="VoIP" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="RTSP" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="TWAMP" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="cPing" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="sPing" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="TeraFlow" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Profile_8">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="FTP_Get" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="FTP_Put" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="HTTP" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="VoIP" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="RTSP" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="TWAMP" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="cPing" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="sPing" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="TeraFlow" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Profile_9">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="FTP_Get" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="FTP_Put" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="HTTP" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="VoIP" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="RTSP" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="TWAMP" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="cPing" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="sPing" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="TeraFlow" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
+

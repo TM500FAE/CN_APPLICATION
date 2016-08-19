@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Version: 2.8.1 -->
+<!-- Date: 25th June 2014 -->
+<diversifEye_Configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="tm500.xsd">
+    <Use_Reduce>true</Use_Reduce>                     <!--Use_Reduce - true or false, specifies provisioning xml format.-->
+    <Use_Scaled_Entities>false</Use_Scaled_Entities>
+    <DiversifEye_Type>500</DiversifEye_Type>          <!-- 500, 1000 or 8400, 500 default -->
+    <Create_Statistic_Groups>false</Create_Statistic_Groups>
+    <Latency_Statistics>false</Latency_Statistics>
+    <Background_Ping>false</Background_Ping>
+    <Use_per_Port_VoIP_Srv_Proxy>true</Use_per_Port_VoIP_Srv_Proxy>
+    <TM500>
+        <Total_UEs>10</Total_UEs>
+        <Minimum_UE_ID_Digits>4</Minimum_UE_ID_Digits>
+        <PDNs_per_UE>2</PDNs_per_UE>                  <!-- Can be 1-8 -->
+        <LAN_IP>10.99.0.7</LAN_IP>               <!-- DTE external ip address, configured in TM500 boot-up (card configuration), 192.168.10.71 is default in E500 configuration -->
+    </TM500>
+    <PPPoE>
+        <MAC_Start>00:1E:6B:03:00:01</MAC_Start>      <!-- arbitrary start MAC address for all PPPoE hosts -->
+        <diversifEye_Port>0</diversifEye_Port>        <!-- 0 or 1 (0=client side, 1=server side normally)  [NB on d500, 10/0-15/0 map to VLAN ID 10-15, while 10/1-15/1 map to VLAN iD 16-21] -->
+        <MTU>1492</MTU>
+        <IPv6_PPPoE_Client PDN="1"/>  <!-- in this case all UEs, PDN 1 and 3 are IPv4, PDNs 0 and 2 are IPv6 -->		
+    </PPPoE>
+    <Application_Configuration>        
+        <Server>
+            <diversifEye_Port>1</diversifEye_Port>    <!-- 0 or 1 (0=client side, 1=server side normally)  [NB on d500, 10/0-15/0 map to VLAN ID 10-15, while 10/1-15/1 map to VLAN iD 16-21] -->
+            <Type>External</Type>                     <!-- Internal, External -->
+            <Ip_Version>6</Ip_Version>                <!-- 4 = IPv4, 6 = IPv6 -->
+            <Application>VoIP</Application>           <!-- HTTP, FTP, VoIP, RTSP, TWAMP -->
+            <Host_Name>ExtVoIPServer</Host_Name>      <!-- Used in Client Profiles -->
+            <IP_Address>2409:8095:8200::2</IP_Address>       <!-- For External Servers:  This is Mandatory, Tthe IP address of the external application server. -->
+                                                      <!-- For Internal Servers, this is Optional, the value is used,  If  this element is not present (removed) then the diversiEye will allocate an IP address from the range from the Server_IP element in the IP address section. -->
+        </Server>  
+        <Client_Profiles>
+            <Default>
+                <VoIP UE="0.." PDN="1">                                        <!-- either use .. or - to show a range -->
+                    <Description>AMR-WB</Description>
+                    <SIP_Server>
+		                    <Server_Host_Name>ExtVoIPServer</Server_Host_Name>
+		                    <Username>+8616801005000+%UE_ID%</Username>                 <!-- i.e. voip-user%UE_ID% => voip-user000, voip-user001 ... voip-user999 (up to Total_UEs) -->
+		                                                                                <!-- i.e. 44123456789012+%UE_ID% => 44123456789012, 44123456789013, 44123456789014 .... -->
+		                    <Password>123456</Password>
+		                    <Domain>ims.mnc000.mcc460.3gppnetwork.org</Domain>
+		                    <SIP_Auth_Username>460001004205000+%UE_ID%@ims.mnc000.mcc460.3gppnetwork.org</SIP_Auth_Username>
+                    </SIP_Server>
+                    <VoLTE>
+												<AKA_Key>12345678123456781234567812345678</AKA_Key>
+												<AKA_Operator_Id>4DC34FD479D23E5D173871C6C997B5E3</AKA_Operator_Id>
+												<Protected_SIP_Port>2468</Protected_SIP_Port>
+												<ESP_Encryption_Algorithm>aes-cbc</ESP_Encryption_Algorithm>
+												<ESP_Auth_Algorithm>hmac-md5-96</ESP_Auth_Algorithm>
+                    </VoLTE>					
+                    <Call_Duration>60000</Call_Duration>                        <!-- in ms, aka Average Hold Time, between 0 and 604800000 (168 hours, or 1 Week) -->
+                    <Initial_Call_Delay>1000</Initial_Call_Delay>
+                    <VoIP_Media_Profile>
+                        <Media_Type>Multimedia</Media_Type>                          <!-- The type of media associated with this codec, Voice or Multimedia -->
+                        <RTP_Data>Full Duplex</RTP_Data>                        <!-- 'Full Duplex', 'Half Duplex Send', 'Half Duplex Receive' -->
+                        <RTCP>true</RTCP>                                       <!-- Only valid if Media Type is voice, Indicates if RTCP is to be enabled for this call. true (default) or false -->
+                        <Silence_Suppression>true</Silence_Suppression>         <!-- true or false, only if Media Type is voice -->
+                        <Silence_Ratio>50</Silence_Ratio>                       <!-- Only used if Silence_Suppression is true, the percentage time that Silence Suppression should be turned on. Range 20% - 80% -->
+                        <Silence_Length>5000</Silence_Length>                  <!-- Only used if Silence_Suppression is true, the length of silence suppression intervals in milliseconds, integer range between 1000ms - 60000ms -->
+                        <Codec>
+                            <Codec_Name>Default AMR-WB</Codec_Name>              <!-- custom name (between 3 and 32 characters) or use a predefined one ('Default CTS AAC-LD', 'Default CTS H.264', 'Default G.711a (PCMA)', 'Default G.711u (PCM)', 'Default G.722 (ACELP)', 'Default G.723 5.3 kbits/s (MP-MLQ)', 'Default G.723 6.3 kbits/s (MP-MLQ)', 'Default G.728', 'Default G.729', 'Default GSM', 'Default iLBC 13.33 kbits/s', 'Default iLBC 15.2 kbits/s', 'MPEG2') -->
+                        </Codec>                      
+                    </VoIP_Media_Profile>
+                    <Allow_Delay_Between_Calls>true</Allow_Delay_Between_Calls>
+                    <BHCA>40</BHCA>
+                    <Mobile_Originated_Pattern>Even</Mobile_Originated_Pattern>       <!-- Odd, Even, List -->
+                    <Destination_Call_URI_Is_SIP>true</Destination_Call_URI_Is_SIP>   <!-- Only used if "Odd" or "Even" is defined in Mobile_Originated_Pattern, Forces the type to SIP  even if the username is numeric and appends the @domain, true or false (false is default and if missing) -->
+                    <Call_Answering_Delay>0</Call_Answering_Delay>                    <!-- Delay in milliseconds before sending a final response accepting/rejecting a call. This can be a profile to inject variability into the delay answering the call, range between 0 and 30000 ms (30 secs) -->
+                    <VoIP_Passive_Analysis Pattern="All">
+                        <Playout_Jitter>40</Playout_Jitter>
+                        <Max_Jitter>80</Max_Jitter>
+                    </VoIP_Passive_Analysis>
+                    <Latency_Statistics/>                
+                </VoIP>
+            </Default>
+            <Profile_0/>
+            <Profile_1/>
+            <Profile_2/>
+            <Profile_3/>
+            <Profile_4/>
+            <Profile_5/>
+            <Profile_6/>
+            <Profile_7/>
+            <Profile_8/>
+            <Profile_9/>
+        </Client_Profiles>
+    </Application_Configuration>
+    <Threshold_Configuration/>
+    <Network_Configuration>
+        <IPv4>
+            <Server_IP>90.20.8.2</Server_IP>                                     <!-- Start IPv4 address for any "v4_DVHS" servers configured -->
+            <Gateway_IP>90.20.8.1</Gateway_IP>                                     <!-- Gateway IPv4 address for any other "v4_EHost" hosts configured -->
+            <Core_Gateway_IP>10.250.250.250</Core_Gateway_IP>                        <!-- Core Gateway IPv4 address for any "v4_EHost" configured on the core -->
+        </IPv4>
+        <IPv6>
+            <Server_IPv6>2001:4711:AFEE:1001:1:1</Server_IPv6>                  <!-- Start IPv6 address for any "v6_DVHS" servers configured -->
+            <Gateway_IPv6>FE80::3000:1100:1</Gateway_IPv6>                      <!-- Gateway IPv6 address for any other "v6_EHost" hosts configured -->
+            <Core_Gateway_IPv6>2001:4711:AFAA:1001::1</Core_Gateway_IPv6>       <!-- Gateway IPv6 address for any "v6_EHost" host named "v6_Core_GW" configured below -->
+        </IPv6>
+        <TCP_Characteristics>
+            <Window_Scale>2</Window_Scale>
+            <Use_SACK_When_Permitted>true</Use_SACK_When_Permitted>
+            <Set_SACK_Permitted>true</Set_SACK_Permitted>
+            <Max_Advertised_Received_Window_Size>32768</Max_Advertised_Received_Window_Size>
+            <Max_Transmit_Buffer_Size>131072</Max_Transmit_Buffer_Size>
+            <Support_Timestamp_when_requested>true</Support_Timestamp_when_requested>
+            <Request_Timestamp>true</Request_Timestamp>
+        </TCP_Characteristics>
+        <Flow_Processors>                                                       <!-- Mac Addresses for Flow Processors, if this section is removed then the adapter MAC address is used. -->
+            <Ma3>00:1e:6b:03:00:01</Ma3>
+            <Ma4>00:1e:6b:04:00:01</Ma4>
+            <Ma5>00:1e:6b:05:00:01</Ma5>
+            <Ma6>00:1e:6b:06:00:01</Ma6>
+            <Ma7>00:1e:6b:07:00:01</Ma7>
+            <Ma8>00:1e:6b:08:00:01</Ma8>
+            <Ma10>00:11:00:03:00:01</Ma10>
+            <Ma11>00:12:00:01:00:01</Ma11>
+            <Ma12>00:12:00:06:00:01</Ma12>
+            <Ma13>00:12:00:04:00:01</Ma13>
+            <Ma14>00:12:00:07:00:01</Ma14>
+            <Ma15>00:12:00:05:00:01</Ma15>
+            <Ma20>00:11:00:13:00:01</Ma20>
+            <Ma21>00:12:00:11:00:01</Ma21>
+            <Ma22>00:12:00:16:00:01</Ma22>
+            <Ma23>00:12:00:14:00:01</Ma23>
+            <Ma24>00:12:00:17:00:01</Ma24>
+            <Ma25>00:12:00:15:00:01</Ma25>
+            <Ma30>00:11:00:02:00:01</Ma30>
+            <Ma31>00:12:00:03:00:01</Ma31>
+            <Ma32>00:12:00:04:00:01</Ma32>
+            <Ma33>00:12:00:05:00:01</Ma33>
+            <Ma34>00:12:00:06:00:01</Ma34>
+            <Ma35>00:12:00:07:00:01</Ma35>
+            <Ma36>00:11:00:08:00:01</Ma36>
+            <Ma37>00:12:00:09:00:01</Ma37>
+            <Ma38>00:12:00:0A:00:01</Ma38>
+            <Ma39>00:12:00:0B:00:01</Ma39>
+            <Ma40>00:11:00:12:00:01</Ma40>
+            <Ma41>00:12:00:13:00:01</Ma41>
+            <Ma42>00:12:00:14:00:01</Ma42>
+            <Ma43>00:12:00:15:00:01</Ma43>
+            <Ma44>00:12:00:16:00:01</Ma44>
+            <Ma45>00:12:00:17:00:01</Ma45>
+            <Ma46>00:11:00:18:00:01</Ma46>
+            <Ma47>00:12:00:19:00:01</Ma47>
+            <Ma48>00:12:00:1A:00:01</Ma48>
+            <Ma49>00:12:00:1B:00:01</Ma49>
+            <Ma50>00:11:00:22:00:01</Ma50>
+            <Ma51>00:12:00:23:00:01</Ma51>
+            <Ma52>00:12:00:24:00:01</Ma52>
+            <Ma53>00:12:00:25:00:01</Ma53>
+            <Ma54>00:12:00:26:00:01</Ma54>
+            <Ma55>00:12:00:27:00:01</Ma55>
+            <Ma56>00:11:00:28:00:01</Ma56>
+            <Ma57>00:12:00:29:00:01</Ma57>
+            <Ma58>00:12:00:2A:00:01</Ma58>
+            <Ma59>00:12:00:2B:00:01</Ma59>
+        </Flow_Processors>
+    </Network_Configuration>
+</diversifEye_Configuration>

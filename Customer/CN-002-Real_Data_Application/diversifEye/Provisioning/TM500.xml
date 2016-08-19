@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Version: 2.8.1 -->
+<!-- Date: 25th June 2014 -->
+<diversifEye_Configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="tm500.xsd">
+    <Use_Reduce>true</Use_Reduce>                     <!--Use_Reduce - true or false, specifies provisioning xml format.-->
+    <Use_Scaled_Entities>false</Use_Scaled_Entities>
+    <DiversifEye_Type>500</DiversifEye_Type>          <!-- 500, 1000 or 8400, 500 default -->
+    <Create_Statistic_Groups>false</Create_Statistic_Groups>
+    <Latency_Statistics>false</Latency_Statistics>
+    <Background_Ping>false</Background_Ping>
+    <Use_per_Port_VoIP_Srv_Proxy>true</Use_per_Port_VoIP_Srv_Proxy>
+    <TM500>
+        <Total_UEs>100</Total_UEs>
+        <Minimum_UE_ID_Digits>4</Minimum_UE_ID_Digits>
+        <PDNs_per_UE>2</PDNs_per_UE>                  <!-- Can be 1-8 -->
+        <LAN_IP>10.99.0.7</LAN_IP>               <!-- DTE external ip address, configured in TM500 boot-up (card configuration), 192.168.10.71 is default in E500 configuration -->
+    </TM500>
+    <PPPoE>
+        <MAC_Start>00:1E:6B:03:00:01</MAC_Start>      <!-- arbitrary start MAC address for all PPPoE hosts -->
+        <diversifEye_Port>0</diversifEye_Port>        <!-- 0 or 1 (0=client side, 1=server side normally)  [NB on d500, 10/0-15/0 map to VLAN ID 10-15, while 10/1-15/1 map to VLAN iD 16-21] -->
+        <MTU>1492</MTU>
+    </PPPoE>
+    <Application_Configuration>
+        <Server>
+            <diversifEye_Port>1</diversifEye_Port>    <!-- 0 or 1 (0=client side, 1=server side normally)  [NB on d500, 10/0-15/0 map to VLAN ID 10-15, while 10/1-15/1 map to VLAN iD 16-21] -->
+            <Type>Internal</Type>                     <!-- Internal, External -->
+            <Ip_Version>4</Ip_Version>                <!-- 4 = IPv4, 6 = IPv6 -->
+            <Application>FTP</Application>            <!-- HTTP, FTP, VoIP, RTSP, TWAMP -->
+            <Host_Name>FTPServer</Host_Name>       <!-- Used in Client Profiles -->
+            <IP_Address>90.20.8.2</IP_Address>       <!-- For External Servers:  This is Mandatory, Tthe IP address of the external application server. -->
+                                                      <!-- For Internal Servers, this is Optional, the value is used,  If  this element is not present (removed) then the diversiEye will allocate an IP address from the range from the Server_IP element in the IP address section. -->
+            <Physical_Location>Core</Physical_Location>
+        </Server>
+        <Server>
+            <diversifEye_Port>1</diversifEye_Port>    <!-- 0 or 1 (0=client side, 1=server side normally)  [NB on d500, 10/0-15/0 map to VLAN ID 10-15, while 10/1-15/1 map to VLAN iD 16-21] -->
+            <Type>Internal</Type>                     <!-- Internal, External -->
+            <Ip_Version>4</Ip_Version>                <!-- 4 = IPv4, 6 = IPv6 -->
+            <Application>HTTP</Application>           <!-- HTTP, FTP, VoIP, RTSP, TWAMP -->
+            <Host_Name>HTTPServer</Host_Name>      <!-- Used in Client Profiles -->
+            <IP_Address>90.20.8.3</IP_Address>       <!-- For External Servers:  This is Mandatory, Tthe IP address of the external application server. -->
+                                                      <!-- For Internal Servers, this is Optional, the value is used,  If  this element is not present (removed) then the diversiEye will allocate an IP address from the range from the Server_IP element in the IP address section. -->
+            <Physical_Location>Core</Physical_Location>
+        </Server>
+        <Server>
+            <diversifEye_Port>1</diversifEye_Port>    <!-- 0 or 1 (0=client side, 1=server side normally)  [NB on d500, 10/0-15/0 map to VLAN ID 10-15, while 10/1-15/1 map to VLAN iD 16-21] -->
+            <Type>External</Type>                     <!-- Internal, External -->
+            <Ip_Version>4</Ip_Version>                <!-- 4 = IPv4, 6 = IPv6 -->
+            <Application>VoIP</Application>           <!-- HTTP, FTP, VoIP, RTSP, TWAMP -->
+            <Host_Name>ExtVoIPServer</Host_Name>      <!-- Used in Client Profiles -->
+            <IP_Address>103.0.3.1</IP_Address>       <!-- For External Servers:  This is Mandatory, Tthe IP address of the external application server. -->
+                                                      <!-- For Internal Servers, this is Optional, the value is used,  If  this element is not present (removed) then the diversiEye will allocate an IP address from the range from the Server_IP element in the IP address section. -->
+        </Server>  
+        <Server>
+            <diversifEye_Port>1</diversifEye_Port>    <!-- 0 or 1 (0=client side, 1=server side normally)  [NB on d500, 10/0-15/0 map to VLAN ID 10-15, while 10/1-15/1 map to VLAN iD 16-21] -->
+            <Type>Internal</Type>                     <!-- Internal, External -->
+            <Ip_Version>4</Ip_Version>                <!-- 4 = IPv4, 6 = IPv6 -->
+            <Application>RTSP</Application>           <!-- HTTP, FTP, VoIP, RTSP, TWAMP -->
+            <Host_Name>RTSPServer</Host_Name>      <!-- Used in Client Profiles -->
+            <IP_Address>90.20.8.4</IP_Address>       <!-- For External Servers:  This is Mandatory, Tthe IP address of the external application server. -->
+                                                      <!-- For Internal Servers, this is Optional, the value is used,  If  this element is not present (removed) then the diversiEye will allocate an IP address from the range from the Server_IP element in the IP address section. -->
+            <Physical_Location>Core</Physical_Location>
+        </Server>
+        <Server>
+            <diversifEye_Port>1</diversifEye_Port>    <!-- 0 or 1 (0=client side, 1=server side normally)  [NB on d500, 10/0-15/0 map to VLAN ID 10-15, while 10/1-15/1 map to VLAN iD 16-21] -->
+            <Type>Internal</Type>                     <!-- Internal, External -->
+            <Ip_Version>4</Ip_Version>                <!-- 4 = IPv4, 6 = IPv6 -->
+            <Application>TeraFlow</Application>           <!-- HTTP, FTP, VoIP, RTSP, TWAMP, PING (internal only) -->
+            <Host_Name>TFServerDL</Host_Name>      <!-- Used in Client Profiles -->
+            <IP_Address>90.20.8.5</IP_Address>       <!-- For External Servers:  This is Mandatory, Tthe IP address of the external application server. -->
+                                                      <!-- For Internal Servers, this is Optional, the value is used,  If  this element is not present (removed) then the diversiEye will allocate an IP address from the range from the Server_IP element in the IP address section. -->
+            <Physical_Location>Core</Physical_Location>
+        </Server>
+        <Server>
+            <diversifEye_Port>1</diversifEye_Port>    <!-- 0 or 1 (0=client side, 1=server side normally)  [NB on d500, 10/0-15/0 map to VLAN ID 10-15, while 10/1-15/1 map to VLAN iD 16-21] -->
+            <Type>Internal</Type>                     <!-- Internal, External -->
+            <Ip_Version>4</Ip_Version>                <!-- 4 = IPv4, 6 = IPv6 -->
+            <Application>TeraFlow</Application>           <!-- HTTP, FTP, VoIP, RTSP, TWAMP, PING (internal only) -->
+            <Host_Name>TFServerUL</Host_Name>      <!-- Used in Client Profiles -->
+            <IP_Address>90.20.8.6</IP_Address>       <!-- For External Servers:  This is Mandatory, Tthe IP address of the external application server. -->
+                                                      <!-- For Internal Servers, this is Optional, the value is used,  If  this element is not present (removed) then the diversiEye will allocate an IP address from the range from the Server_IP element in the IP address section. -->
+            <Physical_Location>Core</Physical_Location>
+        </Server>                                
+        <Server>
+            <diversifEye_Port>1</diversifEye_Port>    <!-- 0 or 1 (0=client side, 1=server side normally)  [NB on d500, 10/0-15/0 map to VLAN ID 10-15, while 10/1-15/1 map to VLAN iD 16-21] -->
+            <Type>Internal</Type>                     <!-- Internal, External -->
+            <Ip_Version>4</Ip_Version>                <!-- 4 = IPv4, 6 = IPv6 -->
+            <Application>TWAMP</Application>            <!-- HTTP, FTP, VoIP, RTSP, TWAMP -->
+            <Host_Name>TWAMPServer</Host_Name>       <!-- Used in Client Profiles -->
+            <IP_Address>90.20.8.7</IP_Address>       <!-- For External Servers:  This is Mandatory, Tthe IP address of the external application server. -->
+                                                      <!-- For Internal Servers, this is Optional, the value is used,  If  this element is not present (removed) then the diversiEye will allocate an IP address from the range from the Server_IP element in the IP address section. -->
+            <Physical_Location>Core</Physical_Location>
+        </Server>
+        <Client_Profiles>
+            <Default>
+                <FTP_Get UE="0..9" PDN="0">                             <!-- either use .. or - to show a range -->
+                    <Server_Host_Name>FTPServer</Server_Host_Name>           <!-- FTP server name for all FTP clients (should be configured as in the Server section) -->
+                    <Path>1GB.bin</Path>                                        <!-- Full FTP get/put path (including filename) for all clients -->
+                    <Delay_Between_Commands>200</Delay_Between_Commands>        <!-- in ms -->
+                    <Delay_Between_Sessions>500</Delay_Between_Sessions>        <!-- in ms -->
+                    <File_Size>1073741824</File_Size>
+                    <FTP_Mode>Passive</FTP_Mode>
+                </FTP_Get>
+                <FTP_Put UE="0..9" PDN="0">                                    <!-- either use .. or - to show a range -->
+                    <Server_Host_Name>FTPServer</Server_Host_Name>           <!-- FTP server name for all FTP clients (should be configured as in the Server section) -->
+                    <Path/>                                                   <!-- Full FTP get/put path (including filename) for all clients -->
+                    <Delay_Between_Commands>200</Delay_Between_Commands>        <!-- in ms -->
+                    <Delay_Between_Sessions>500</Delay_Between_Sessions>        <!-- in ms -->
+                    <Ftp_Put_Path_Shared>ftpupload/1GB.bin</Ftp_Put_Path_Shared>
+                    <File_Size>1073741824</File_Size>
+                    <FTP_Mode>Passive</FTP_Mode>
+                </FTP_Put> 
+                <HTTP UE="10..19" PDN="0">                                      <!-- either use .. or - to show a range -->
+                    <Server_Host_Name>HTTPServer</Server_Host_Name>          <!-- HTTP server name for all HTTP clients (should be configured as in the Server section) -->
+                    <Http_Operation>GET</Http_Operation>                        <!-- Choice of GET, POST or HEAD -->
+                    <Path>1Mb.bin</Path>                                        <!-- Full HTTP get/post/head URI (either relative, or could contain "HTTP://" etc.) -->
+                    <File_Size>1048576</File_Size>
+                    <Delay_Between_Requests>120</Delay_Between_Requests>        <!-- in ms -->
+                    <Delay_Between_Connections>500</Delay_Between_Connections>  <!-- in ms -->
+                </HTTP> 
+                <HTTP UE="10..19" PDN="0">                                      <!-- either use .. or - to show a range -->
+                    <Server_Host_Name>HTTPServer</Server_Host_Name>          <!-- HTTP server name for all HTTP clients (should be configured as in the Server section) -->
+                    <Http_Operation>POST</Http_Operation>                       <!-- Choice of GET, POST or HEAD -->
+                    <Path>post-test.php</Path>                                  <!-- Full HTTP get/post/head URI (either relative, or could contain "HTTP://" etc.) -->
+                    <File_Size>1024</File_Size>
+                    <POST_Content>HMRW658vQGP2kQR45VZ2vrbLAkh08A48JP9JDlSIwsUBfdd6NP0mlXNry0VgN7FtqmrwlbnKvOXGIR0D3wIr1NYgN3SfB6ICzNrh5x61tip3aUS4qsX6RzNrLzFxnzBxG7TULUFP3TBh4WBtF5Pfhg1gxNtZ7o3V3NVCG1ZZMFQJM78rmnpGmV76TIPf5DkScVewfljB</POST_Content>
+                    <Delay_Between_Requests>500</Delay_Between_Requests>        <!-- in ms -->
+                    <Delay_Between_Connections>100</Delay_Between_Connections>  <!-- in ms -->
+                </HTTP> 
+                <HTTP UE="20..29" PDN="1" UE_Pattern="Even">                                      <!-- either use .. or - to show a range -->
+                    <Alias>imessage</Alias>
+                    <Description>Simulated Instant Messaging Client talking to HTTP server on PPPoE Host</Description>
+                    <Server_Host_Name>imessage_%UE_ID+1%_%PDN%</Server_Host_Name>  <!-- HTTP server name for all HTTP clients (should be configured as in the Server section) -->
+                    <Http_Operation>POST</Http_Operation>                        <!-- Choice of GET, POST or HEAD -->
+                    <File_Size>50</File_Size>
+                    <Path>im-post-test.php</Path>                                  <!-- Full HTTP get/post/head URI (either relative, or could contain "HTTP://" etc.) -->
+                    <POST_Content>fdd6NP0mlXNry0VgN7FtqmrwlbnKvOXGIR0D3wIr1NYgN3SfB6</POST_Content>
+                    <Delay_Between_Requests>10000</Delay_Between_Requests>        <!-- in ms -->
+										<Delay_Between_Connections>10000</Delay_Between_Connections>  <!-- in ms -->
+                </HTTP>
+                <SHTTP UE="20..29" PDN="1" UE_Pattern="Odd">
+                  <Alias>imessage</Alias>
+                  <Description>Simulated Instant Messaging Server on PPPoE Host</Description>
+                </SHTTP> 
+                <VoIP UE="30..39" PDN="1">                                        <!-- either use .. or - to show a range -->
+                    <Description>AMR-WB</Description>
+                    <SIP_Server>
+		                    <Server_Host_Name>ExtVoIPServer</Server_Host_Name>
+		                    <Username>+8210201500908+%UE_ID%</Username>                 <!-- i.e. voip-user%UE_ID% => voip-user000, voip-user001 ... voip-user999 (up to Total_UEs) -->
+		                                                                                <!-- i.e. 44123456789012+%UE_ID% => 44123456789012, 44123456789013, 44123456789014 .... -->
+		                    <Password>111111</Password>
+		                    <Domain>ims.mnc006.mcc450.3gppnetwork.org</Domain>
+		                    <SIP_Auth_Username/>
+                    </SIP_Server>
+                    <Call_Duration>60000</Call_Duration>                        <!-- in ms, aka Average Hold Time, between 0 and 604800000 (168 hours, or 1 Week) -->
+                    <Initial_Call_Delay>1000</Initial_Call_Delay>
+                    <VoIP_Media_Profile>
+                        <Media_Type>Multimedia</Media_Type>                          <!-- The type of media associated with this codec, Voice or Multimedia -->
+                        <RTP_Data>Full Duplex</RTP_Data>                        <!-- 'Full Duplex', 'Half Duplex Send', 'Half Duplex Receive' -->
+                        <RTCP>true</RTCP>                                       <!-- Only valid if Media Type is voice, Indicates if RTCP is to be enabled for this call. true (default) or false -->
+                        <Silence_Suppression>true</Silence_Suppression>         <!-- true or false, only if Media Type is voice -->
+                        <Silence_Ratio>50</Silence_Ratio>                       <!-- Only used if Silence_Suppression is true, the percentage time that Silence Suppression should be turned on. Range 20% - 80% -->
+                        <Silence_Length>5000</Silence_Length>                  <!-- Only used if Silence_Suppression is true, the length of silence suppression intervals in milliseconds, integer range between 1000ms - 60000ms -->
+                        <Codec>
+                            <Codec_Name>Default AMR-WB</Codec_Name>              <!-- custom name (between 3 and 32 characters) or use a predefined one ('Default CTS AAC-LD', 'Default CTS H.264', 'Default G.711a (PCMA)', 'Default G.711u (PCM)', 'Default G.722 (ACELP)', 'Default G.723 5.3 kbits/s (MP-MLQ)', 'Default G.723 6.3 kbits/s (MP-MLQ)', 'Default G.728', 'Default G.729', 'Default GSM', 'Default iLBC 13.33 kbits/s', 'Default iLBC 15.2 kbits/s', 'MPEG2') -->
+                        </Codec>                      
+                    </VoIP_Media_Profile>
+                    <Allow_Delay_Between_Calls>true</Allow_Delay_Between_Calls>
+                    <BHCA>40</BHCA>
+                    <Mobile_Originated_Pattern>Even</Mobile_Originated_Pattern>       <!-- Odd, Even, List -->
+                    <Destination_Call_URI_Is_SIP>true</Destination_Call_URI_Is_SIP>   <!-- Only used if "Odd" or "Even" is defined in Mobile_Originated_Pattern, Forces the type to SIP  even if the username is numeric and appends the @domain, true or false (false is default and if missing) -->
+                    <Call_Answering_Delay>0</Call_Answering_Delay>                    <!-- Delay in milliseconds before sending a final response accepting/rejecting a call. This can be a profile to inject variability into the delay answering the call, range between 0 and 30000 ms (30 secs) -->
+                    <VoIP_Passive_Analysis Pattern="All">
+                        <Playout_Jitter>40</Playout_Jitter>
+                        <Max_Jitter>80</Max_Jitter>
+                    </VoIP_Passive_Analysis>
+                    <Latency_Statistics/>                
+                </VoIP>
+                <VoIP UE="40..49" PDN="1">                                        <!-- either use .. or - to show a range -->
+                    <Description>AMR-WB</Description>
+                    <SIP_Server>
+		                    <Server_Host_Name>ExtVoIPServer</Server_Host_Name>
+		                    <Username>+8210201500908+%UE_ID%</Username>                 <!-- i.e. voip-user%UE_ID% => voip-user000, voip-user001 ... voip-user999 (up to Total_UEs) -->
+		                                                                                <!-- i.e. 44123456789012+%UE_ID% => 44123456789012, 44123456789013, 44123456789014 .... -->
+		                    <Password>111111</Password>
+		                    <Domain>ims.mnc006.mcc450.3gppnetwork.org</Domain>
+		                    <SIP_Auth_Username/>
+                    </SIP_Server>
+                    <Call_Duration>60000</Call_Duration>                        <!-- in ms, aka Average Hold Time, between 0 and 604800000 (168 hours, or 1 Week) -->
+                    <Initial_Call_Delay>1000</Initial_Call_Delay>
+                    <VoIP_Media_Profile>
+                        <Media_Type>Multimedia</Media_Type>                          <!-- The type of media associated with this codec, Voice or Multimedia -->
+                        <RTP_Data>Full Duplex</RTP_Data>                        <!-- 'Full Duplex', 'Half Duplex Send', 'Half Duplex Receive' -->
+                        <RTCP>true</RTCP>                                       <!-- Only valid if Media Type is voice, Indicates if RTCP is to be enabled for this call. true (default) or false -->
+                        <Silence_Suppression>true</Silence_Suppression>         <!-- true or false, only if Media Type is voice -->
+                        <Silence_Ratio>50</Silence_Ratio>                       <!-- Only used if Silence_Suppression is true, the percentage time that Silence Suppression should be turned on. Range 20% - 80% -->
+                        <Silence_Length>5000</Silence_Length>                  <!-- Only used if Silence_Suppression is true, the length of silence suppression intervals in milliseconds, integer range between 1000ms - 60000ms -->
+                        <Codec>
+                            <Codec_Name>Default AMR-WB</Codec_Name>              <!-- custom name (between 3 and 32 characters) or use a predefined one ('Default CTS AAC-LD', 'Default CTS H.264', 'Default G.711a (PCMA)', 'Default G.711u (PCM)', 'Default G.722 (ACELP)', 'Default G.723 5.3 kbits/s (MP-MLQ)', 'Default G.723 6.3 kbits/s (MP-MLQ)', 'Default G.728', 'Default G.729', 'Default GSM', 'Default iLBC 13.33 kbits/s', 'Default iLBC 15.2 kbits/s', 'MPEG2') -->
+                        </Codec>                      
+                    </VoIP_Media_Profile>
+                    <Allow_Delay_Between_Calls>true</Allow_Delay_Between_Calls>
+                    <BHCA>40</BHCA>
+                    <Mobile_Originated_Pattern>Even</Mobile_Originated_Pattern>       <!-- Odd, Even, List -->
+                    <Destination_Call_URI_Is_SIP>true</Destination_Call_URI_Is_SIP>   <!-- Only used if "Odd" or "Even" is defined in Mobile_Originated_Pattern, Forces the type to SIP  even if the username is numeric and appends the @domain, true or false (false is default and if missing) -->
+                    <Call_Answering_Delay>0</Call_Answering_Delay>                    <!-- Delay in milliseconds before sending a final response accepting/rejecting a call. This can be a profile to inject variability into the delay answering the call, range between 0 and 30000 ms (30 secs) -->
+                    <VoIP_Passive_Analysis/>
+                    <Latency_Statistics>true</Latency_Statistics>                    
+                </VoIP>                
+                <VoIP UE="50..59" PDN="1">                                        <!-- either use .. or - to show a range -->
+                    <Description>Multimedia VoIP call</Description>
+                    <SIP_Server>
+		                    <Server_Host_Name>ExtVoIPServer</Server_Host_Name>
+		                    <Username>+8210201500908+%UE_ID%</Username>                 <!-- i.e. voip-user%UE_ID% => voip-user000, voip-user001 ... voip-user999 (up to Total_UEs) -->
+		                                                                                <!-- i.e. 44123456789012+%UE_ID% => 44123456789012, 44123456789013, 44123456789014 .... -->
+		                    <Password>111111</Password>
+		                    <Domain>ims.mnc006.mcc450.3gppnetwork.org</Domain>
+		                    <SIP_Auth_Username/>
+                    </SIP_Server>
+                    <Call_Duration>540000</Call_Duration>                        <!-- in ms, aka Average Hold Time, between 0 and 604800000 (168 hours, or 1 Week) -->
+                    <Initial_Call_Delay>1000</Initial_Call_Delay>
+                    <VoIP_Media_Profile>
+                        <Media_Type>Multimedia</Media_Type>                     <!-- The type of media associated with this codec, Voice or Multimedia -->
+                        <RTP_Data>Full Duplex</RTP_Data>                        <!-- 'Full Duplex', 'Half Duplex Send', 'Half Duplex Receive' -->
+                        <RTCP>true</RTCP>                                       <!-- Only valid if Media Type is voice, Indicates if RTCP is to be enabled for this call. true (default) or false -->
+                        <Silence_Suppression>false</Silence_Suppression>         <!-- true or false, only if Media Type is voice -->
+                        <Codec>
+                            <Codec_Name>Default CTS H.264</Codec_Name>                      <!-- custom name (between 3 and 32 characters) or use a predefined one ('Default CTS AAC-LD', 'Default CTS H.264', 'Default G.711a (PCMA)', 'Default G.711u (PCM)', 'Default G.722 (ACELP)', 'Default G.723 5.3 kbits/s (MP-MLQ)', 'Default G.723 6.3 kbits/s (MP-MLQ)', 'Default G.728', 'Default G.729', 'Default GSM', 'Default iLBC 13.33 kbits/s', 'Default iLBC 15.2 kbits/s', 'MPEG2') -->
+                        </Codec>  
+                    </VoIP_Media_Profile>
+                    <Allow_Delay_Between_Calls>true</Allow_Delay_Between_Calls>
+                    <BHCA>6</BHCA>
+                    <Mobile_Originated_Pattern>Even</Mobile_Originated_Pattern>       <!-- Odd, Even, List -->
+                    <Destination_Call_URI_Is_SIP>true</Destination_Call_URI_Is_SIP>   <!-- Only used if "Odd" or "Even" is defined in Mobile_Originated_Pattern, Forces the type to SIP  even if the username is numeric and appends the @domain, true or false (false is default and if missing) -->
+                    <Call_Answering_Delay>0</Call_Answering_Delay>                    <!-- Delay in milliseconds before sending a final response accepting/rejecting a call. This can be a profile to inject variability into the delay answering the call, range between 0 and 30000 ms (30 secs) -->
+                    <VoIP_Passive_Analysis Pattern="All">
+                        <Playout_Jitter>40</Playout_Jitter>
+                        <Max_Jitter>80</Max_Jitter>
+                        <Media_Type>video</Media_Type>
+                        <Video_Codec>MPEG</Video_Codec>
+                    </VoIP_Passive_Analysis>
+                </VoIP>  
+                <RTSP UE="60..69" PDN="0">                                   <!-- either use .. or - to show a range -->
+                     <Alias>cvod</Alias>                                      <!-- Optionally override the application name prefix, if missing the default is used. -->
+                     <Description>Video On Demand</Description>
+                    <Server_Host_Name>RTSPServer</Server_Host_Name>          <!-- RTSP server name for all RTSP clients (should be configured as in the Server section) -->
+                    <Path>/media/low-bitrate.3gp</Path>
+                    <RTSP_Media_Profile>                    
+                        <Codec>
+                            <Codec_Name>MPEG2</Codec_Name>                      <!-- custom name (between 3 and 32 characters) or use a predefined one ('Default CTS AAC-LD', 'Default CTS H.264', 'Default G.711a (PCMA)', 'Default G.711u (PCM)', 'Default G.722 (ACELP)', 'Default G.723 5.3 kbits/s (MP-MLQ)', 'Default G.723 6.3 kbits/s (MP-MLQ)', 'Default G.728', 'Default G.729', 'Default GSM', 'Default iLBC 13.33 kbits/s', 'Default iLBC 15.2 kbits/s', 'MPEG2') -->
+                            <Codec_Used_For>Streaming</Codec_Used_For>          <!-- Voice, Streaming or PCAP -->
+                            <Codec_Encoding_Name>MPEG2-TS</Codec_Encoding_Name> <!-- Custom (between 3 and 32 characters) or predefined one ('mpeg4-generic', 'H.264', 'PCMA', 'PCMU', 'G722', 'G723', 'G728', 'G729', 'GSM', 'iLBC')-->
+                            <Codec_Media_Type>video</Codec_Media_Type>          <!-- Only if Codec_Used_For is streaming, 'audio' or 'video' -->
+                            <Codec_Payload_Type>32</Codec_Payload_Type>         <!-- Identifies the RTP AVP, range 0-127 (0 - 96 is defined by IANA) -->
+                            <Codec_Payload_Size>1316</Codec_Payload_Size>       <!-- Payload octets to be carried in each RTP packet, range between 1 and 1446 -->
+                            <Codec_Stream_Rate>3000</Codec_Stream_Rate>         <!-- Only if Media_Type is Multimedia, in kbits/sec, between 16 and 5000000 -->
+                            <Codec_Frequency>90000</Codec_Frequency>            <!-- The frequency or clock rate for this codec.8000 (default) - 200,000 Hz.-->
+                            <Codec_Data_File/>                                  <!-- Empty for arbitrary data or just the file name or path relative to /home/cli WARNING - If the file does not exist in /home/cli then provisioning WILL fail, MUST contain enough data for least one RTP packet, the file size must be at least the number of bytes specified by the Codec_Payload_Size -->
+                            <SDP_Attributes/>                                   <!-- Space seperated list, i.e. b=TIAS:{BW:384000} a=content:main a=fmtp:97 profile-level-id=42801 -->
+                        </Codec>
+                    </RTSP_Media_Profile>                                          
+                    <Media_Stream_Duration>Indefinite</Media_Stream_Duration>
+                </RTSP>
+                <TeraFlow UE="70..79" PDN="0">
+                    <Alias>DLUDP</Alias>
+                    <Server_Host_Name>TFServerDL</Server_Host_Name>            <!-- Tera Flow server name for all Tera Flow clients (should be configured as in the Server section) -->
+                    <Server_on_PPPoE>true</Server_on_PPPoE>
+                    <Start_After>0</Start_After>                               <!-- Time (ms) after which the Tera Flow client application will start.  Range 0 - 300000 (ms). Missing (default) then diversifEye will work out an appropriate value based on the number of client applications configured in the test group. -->
+                    <Stop_After>0</Stop_After>                               <!-- Duration of time (sec) after an Tera Flow client task has started, that it will run for, before automatically stopping. Range 1 - 86400 (secs).  Missing (default) means it will run forever or until stopped manually. -->
+                    <Throughput>500</Throughput>                                  <!-- Throughput (default in Mbps, between 1 and 10000000 for mbps) -->
+                    <Throughput_Metric>kbps</Throughput_Metric>                 <!-- Throughput Metric, bps, kbps, mbps, gbps, tbps, default mbps -->
+                    <TeraFlow_Payload_Size>1024</TeraFlow_Payload_Size>         <!-- Payload Size in bytes for Tera Flow Session packets, default 8192 bytes -->
+                    <Number_of_Sessions>1</Number_of_Sessions>                  <!-- Number of Tera flow sessions, between 1 and 100000000, default 1 -->
+                </TeraFlow>
+                <TeraFlow UE="70..79" PDN="0">
+                    <Alias>ULUDP</Alias>
+                    <Server_Host_Name>TFServerUL</Server_Host_Name>            <!-- Tera Flow server name for all Tera Flow clients (should be configured as in the Server section) -->
+                    <Start_After>0</Start_After>                               <!-- Time (ms) after which the Tera Flow client application will start.  Range 0 - 300000 (ms). Missing (default) then diversifEye will work out an appropriate value based on the number of client applications configured in the test group. -->
+                    <Stop_After>0</Stop_After>                               <!-- Duration of time (sec) after an Tera Flow client task has started, that it will run for, before automatically stopping. Range 1 - 86400 (secs).  Missing (default) means it will run forever or until stopped manually. -->
+                    <Throughput>200</Throughput>                                  <!-- Throughput (default in Mbps, between 1 and 10000000 for mbps) -->
+                    <Throughput_Metric>kbps</Throughput_Metric>                 <!-- Throughput Metric, bps, kbps, mbps, gbps, tbps, default mbps -->
+                    <TeraFlow_Payload_Size>1024</TeraFlow_Payload_Size>         <!-- Payload Size in bytes for Tera Flow Session packets, default 8192 bytes -->
+                    <Number_of_Sessions>1</Number_of_Sessions>                  <!-- Number of Tera flow sessions, between 1 and 100000000, default 1 -->
+                </TeraFlow> 
+                <cPing UE="80..89" PDN="0">
+                    <Ping_IP_Address>90.20.8.7</Ping_IP_Address>                  <!-- Default IP address to ping, can be overridden by TM500 MTS mode)  -->
+                    <Start_After>0</Start_After>
+                    <Delay_Between_Pings>30000</Delay_Between_Pings>
+                    <Packet_Size>16</Packet_Size>
+                </cPing>                                                                                                                                                                                             
+                <TWAMP UE="90.." PDN="0">                             <!-- either use .. or - to show a range -->
+                    <Server_Host_Name>TWAMPServer</Server_Host_Name>
+                    <Delay_Between_Packets>100</Delay_Between_Packets>        <!-- in ms -->
+                    <Payload_Size>100</Payload_Size>        <!-- in ms -->
+                    <Indefinite_Session_Duration>true</Indefinite_Session_Duration>
+                </TWAMP> 
+            </Default>
+            <Profile_0/>
+            <Profile_1/>
+            <Profile_2/>
+            <Profile_3/>
+            <Profile_4/>
+            <Profile_5/>
+            <Profile_6/>
+            <Profile_7/>
+            <Profile_8/>
+            <Profile_9/>
+        </Client_Profiles>
+    </Application_Configuration>
+    <Threshold_Configuration/>
+    <Network_Configuration>
+        <IPv4>
+            <Server_IP>90.20.8.2</Server_IP>                                     <!-- Start IPv4 address for any "v4_DVHS" servers configured -->
+            <Gateway_IP>132.248.1.1</Gateway_IP>                                     <!-- Gateway IPv4 address for any other "v4_EHost" hosts configured -->
+            <Core_Gateway_IP>90.20.8.1</Core_Gateway_IP>                        <!-- Core Gateway IPv4 address for any "v4_EHost" configured on the core -->
+        </IPv4>
+        <IPv6>
+            <Server_IPv6>2001:4711:AFEE:1001:1:1</Server_IPv6>                  <!-- Start IPv6 address for any "v6_DVHS" servers configured -->
+            <Gateway_IPv6>FE80::3000:1100:1</Gateway_IPv6>                      <!-- Gateway IPv6 address for any other "v6_EHost" hosts configured -->
+            <Core_Gateway_IPv6>2001:4711:AFAA:1001::1</Core_Gateway_IPv6>       <!-- Gateway IPv6 address for any "v6_EHost" host named "v6_Core_GW" configured below -->
+        </IPv6>
+        <TCP_Characteristics>
+            <Window_Scale>2</Window_Scale>
+            <Use_SACK_When_Permitted>true</Use_SACK_When_Permitted>
+            <Set_SACK_Permitted>true</Set_SACK_Permitted>
+            <Max_Advertised_Received_Window_Size>32768</Max_Advertised_Received_Window_Size>
+            <Max_Transmit_Buffer_Size>131072</Max_Transmit_Buffer_Size>
+            <Support_Timestamp_when_requested>true</Support_Timestamp_when_requested>
+            <Request_Timestamp>true</Request_Timestamp>
+        </TCP_Characteristics>
+        <Flow_Processors>                                                       <!-- Mac Addresses for Flow Processors, if this section is removed then the adapter MAC address is used. -->
+            <Ma3>00:1e:6b:03:00:01</Ma3>
+            <Ma4>00:1e:6b:04:00:01</Ma4>
+            <Ma5>00:1e:6b:05:00:01</Ma5>
+            <Ma6>00:1e:6b:06:00:01</Ma6>
+            <Ma7>00:1e:6b:07:00:01</Ma7>
+            <Ma8>00:1e:6b:08:00:01</Ma8>
+            <Ma10>00:11:00:03:00:01</Ma10>
+            <Ma11>00:12:00:01:00:01</Ma11>
+            <Ma12>00:12:00:06:00:01</Ma12>
+            <Ma13>00:12:00:04:00:01</Ma13>
+            <Ma14>00:12:00:07:00:01</Ma14>
+            <Ma15>00:12:00:05:00:01</Ma15>
+            <Ma20>00:11:00:13:00:01</Ma20>
+            <Ma21>00:12:00:11:00:01</Ma21>
+            <Ma22>00:12:00:16:00:01</Ma22>
+            <Ma23>00:12:00:14:00:01</Ma23>
+            <Ma24>00:12:00:17:00:01</Ma24>
+            <Ma25>00:12:00:15:00:01</Ma25>
+            <Ma30>00:11:00:02:00:01</Ma30>
+            <Ma31>00:12:00:03:00:01</Ma31>
+            <Ma32>00:12:00:04:00:01</Ma32>
+            <Ma33>00:12:00:05:00:01</Ma33>
+            <Ma34>00:12:00:06:00:01</Ma34>
+            <Ma35>00:12:00:07:00:01</Ma35>
+            <Ma36>00:11:00:08:00:01</Ma36>
+            <Ma37>00:12:00:09:00:01</Ma37>
+            <Ma38>00:12:00:0A:00:01</Ma38>
+            <Ma39>00:12:00:0B:00:01</Ma39>
+            <Ma40>00:11:00:12:00:01</Ma40>
+            <Ma41>00:12:00:13:00:01</Ma41>
+            <Ma42>00:12:00:14:00:01</Ma42>
+            <Ma43>00:12:00:15:00:01</Ma43>
+            <Ma44>00:12:00:16:00:01</Ma44>
+            <Ma45>00:12:00:17:00:01</Ma45>
+            <Ma46>00:11:00:18:00:01</Ma46>
+            <Ma47>00:12:00:19:00:01</Ma47>
+            <Ma48>00:12:00:1A:00:01</Ma48>
+            <Ma49>00:12:00:1B:00:01</Ma49>
+            <Ma50>00:11:00:22:00:01</Ma50>
+            <Ma51>00:12:00:23:00:01</Ma51>
+            <Ma52>00:12:00:24:00:01</Ma52>
+            <Ma53>00:12:00:25:00:01</Ma53>
+            <Ma54>00:12:00:26:00:01</Ma54>
+            <Ma55>00:12:00:27:00:01</Ma55>
+            <Ma56>00:11:00:28:00:01</Ma56>
+            <Ma57>00:12:00:29:00:01</Ma57>
+            <Ma58>00:12:00:2A:00:01</Ma58>
+            <Ma59>00:12:00:2B:00:01</Ma59>
+        </Flow_Processors>
+    </Network_Configuration>
+</diversifEye_Configuration>

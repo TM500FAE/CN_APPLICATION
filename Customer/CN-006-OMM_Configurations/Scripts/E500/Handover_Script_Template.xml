@@ -1,0 +1,1163 @@
+<?xml version="1.0" encoding="utf-16"?>
+<!-- TMA LOADSYS Campaign Version 0 -->
+<Campaign xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <CampaignFormatVersion>1</CampaignFormatVersion>
+  <IsUnFrozen>true</IsUnFrozen>
+  <NumberOfUEToBeUsed>100</NumberOfUEToBeUsed>
+  <CampaignName>Handover_Script_Template</CampaignName>
+  <CampaignDescription>Created on 6/15/2016</CampaignDescription>
+  <Mobilities>
+    <Fading>NoFading</Fading>
+    <Ioc>-80</Ioc>
+    <Guid>61354f7c-6859-49ab-88ab-f2ceb79c168c</Guid>
+    <Name>Static Point</Name>
+    <Speed>0</Speed>
+    <SpeedDistribution>0</SpeedDistribution>
+    <Randomisation>0</Randomisation>
+    <RetracePath>true</RetracePath>
+    <RestartPath>false</RestartPath>
+    <Stagger>false</Stagger>
+    <StaggerUEsPerSecond>0</StaggerUEsPerSecond>
+    <ChannelModel>EPA_5Hz</ChannelModel>
+    <CorrectedChannelModel>EPA_5Hz</CorrectedChannelModel>
+    <MimoCorrelation>None</MimoCorrelation>
+    <SirOffset>0</SirOffset>
+    <EditableSirOffset>0</EditableSirOffset>
+  </Mobilities>
+  <RouteSetAndENBConfig>
+    <ConfigName>1 eNodeB</ConfigName>
+    <eNodeBs>
+      <eNBConfig>
+        <IsValid>false</IsValid>
+        <eNodeBName>eNB_01</eNodeBName>
+        <X>0</X>
+        <Y>0</Y>
+        <Center>
+          <X>0</X>
+          <Y>0</Y>
+        </Center>
+        <Cells>
+          <Transmitter>
+            <Enabled>true</Enabled>
+            <UseRealisticAntennaModel>false</UseRealisticAntennaModel>
+            <AntennaGain>0</AntennaGain>
+            <Frequency>25850</Frequency>
+            <Radius>20000</Radius>
+            <ReferenceSignalPower>15</ReferenceSignalPower>
+            <SectorRolloff>3</SectorRolloff>
+            <UplinkInterference>-37</UplinkInterference>
+            <CalibrateUlPowerOffset>true</CalibrateUlPowerOffset>
+            <OverrideUlPowerOffsets>false</OverrideUlPowerOffsets>
+            <PRACHPowerOffset>80</PRACHPowerOffset>
+            <PUCCHPowerOffset>80</PUCCHPowerOffset>
+            <PUSCHPowerOffset>80</PUSCHPowerOffset>
+            <SRSPowerOffset>80</SRSPowerOffset>
+            <CarrierAggregationGroupID>None</CarrierAggregationGroupID>
+            <InterfaceMode>Dedicated</InterfaceMode>
+            <SetPathLossFrequency>false</SetPathLossFrequency>
+            <PathLossFrequency_100kHz>7280</PathLossFrequency_100kHz>
+            <SetUplinkCarrierFrequency>false</SetUplinkCarrierFrequency>
+            <UplinkCarrierFrequency_100kHz>6980</UplinkCarrierFrequency_100kHz>
+            <UplinkBandwith>SystemBandwidth</UplinkBandwith>
+            <CellRangeRolloff>Range Escalation</CellRangeRolloff>
+            <StartAngle>0</StartAngle>
+            <EndAngle>360</EndAngle>
+            <Sector>
+              <dStartAngle>0</dStartAngle>
+              <dEndAngle>360</dEndAngle>
+            </Sector>
+            <CellId>16</CellId>
+            <RadioContextId>0</RadioContextId>
+            <SystemBandwidth>20</SystemBandwidth>
+            <NumberOfEnbTransmitAntenna>2</NumberOfEnbTransmitAntenna>
+            <Rat>E-UTRAN TDD</Rat>
+            <ChassisNumber>1</ChassisNumber>
+            <SlotNumber>RC1</SlotNumber>
+            <SubframeAssignment>0</SubframeAssignment>
+            <SpecialSubframePatterns>0</SpecialSubframePatterns>
+          </Transmitter>
+        </Cells>
+        <Radius>1000</Radius>
+      </eNBConfig>
+      <eNBConfig>
+        <IsValid>false</IsValid>
+        <eNodeBName>eNB_02</eNodeBName>
+        <X>10500</X>
+        <Y>0</Y>
+        <Center>
+          <X>10500</X>
+          <Y>0</Y>
+        </Center>
+        <Cells>
+          <Transmitter>
+            <Enabled>true</Enabled>
+            <UseRealisticAntennaModel>false</UseRealisticAntennaModel>
+            <AntennaGain>0</AntennaGain>
+            <Frequency>19000</Frequency>
+            <Radius>20000</Radius>
+            <ReferenceSignalPower>15</ReferenceSignalPower>
+            <SectorRolloff>3</SectorRolloff>
+            <UplinkInterference>-37</UplinkInterference>
+            <CalibrateUlPowerOffset>true</CalibrateUlPowerOffset>
+            <OverrideUlPowerOffsets>false</OverrideUlPowerOffsets>
+            <PRACHPowerOffset>80</PRACHPowerOffset>
+            <PUCCHPowerOffset>80</PUCCHPowerOffset>
+            <PUSCHPowerOffset>80</PUSCHPowerOffset>
+            <SRSPowerOffset>80</SRSPowerOffset>
+            <CarrierAggregationGroupID>None</CarrierAggregationGroupID>
+            <InterfaceMode>Dedicated</InterfaceMode>
+            <SetPathLossFrequency>false</SetPathLossFrequency>
+            <PathLossFrequency_100kHz>7280</PathLossFrequency_100kHz>
+            <SetUplinkCarrierFrequency>false</SetUplinkCarrierFrequency>
+            <UplinkCarrierFrequency_100kHz>6980</UplinkCarrierFrequency_100kHz>
+            <UplinkBandwith>SystemBandwidth</UplinkBandwith>
+            <CellRangeRolloff>Range Escalation</CellRangeRolloff>
+            <StartAngle>-0</StartAngle>
+            <EndAngle>360</EndAngle>
+            <Sector>
+              <dStartAngle>-0</dStartAngle>
+              <dEndAngle>360</dEndAngle>
+            </Sector>
+            <CellId>18</CellId>
+            <RadioContextId>1</RadioContextId>
+            <SystemBandwidth>20</SystemBandwidth>
+            <NumberOfEnbTransmitAntenna>2</NumberOfEnbTransmitAntenna>
+            <Rat>E-UTRAN FDD</Rat>
+            <ChassisNumber>2</ChassisNumber>
+            <SlotNumber>RC1</SlotNumber>
+            <SubframeAssignment>0</SubframeAssignment>
+            <SpecialSubframePatterns>0</SpecialSubframePatterns>
+          </Transmitter>
+        </Cells>
+        <Radius>0</Radius>
+      </eNBConfig>
+    </eNodeBs>
+    <RouteSet>
+      <Route>
+        <Name>eNodeB</Name>
+        <Waypoints>
+          <WayPoint>
+            <waypoint>
+              <X>954</X>
+              <Y>-11</Y>
+            </waypoint>
+            <waypointName>R1_wp1</waypointName>
+            <X>954</X>
+            <Y>-11</Y>
+          </WayPoint>
+          <WayPoint>
+            <waypoint>
+              <X>9487</X>
+              <Y>9</Y>
+            </waypoint>
+            <waypointName>R1_wp2</waypointName>
+            <X>9487</X>
+            <Y>9</Y>
+          </WayPoint>
+        </Waypoints>
+        <Guid>077efb06-bd21-4537-88fc-60330f29b90d</Guid>
+        <WaypointGraphicValue>RedPin</WaypointGraphicValue>
+      </Route>
+    </RouteSet>
+  </RouteSetAndENBConfig>
+  <TrafficMixConfig>
+    <Guid>d4125928-d8f7-4e4b-9e7b-b3ef4c072ee2</Guid>
+    <Name>VoIP</Name>
+    <Mix>
+      <TrafficSquad>
+        <APN>""</APN>
+        <TrafficPercentageSize>100</TrafficPercentageSize>
+        <TrafficPercentageStartAt>0</TrafficPercentageStartAt>
+        <TrafficString>100% x Voice</TrafficString>
+        <MyTraffic xsi:type="Voip">
+          <TrafficName>Voice</TrafficName>
+          <ApplicationName>cvoip</ApplicationName>
+          <APN />
+          <BearerAllocation>Default</BearerAllocation>
+          <SelectedBearerResources>00000000-0000-0000-0000-000000000000</SelectedBearerResources>
+          <ProvisioningSettings>
+            <ServiceName>Voice</ServiceName>
+            <LoadProfile>Default</LoadProfile>
+            <DiversifySettings />
+          </ProvisioningSettings>
+          <TrafficLoadProfile>Default</TrafficLoadProfile>
+          <ServiceDuration>100</ServiceDuration>
+          <ServiceDelayTime>0</ServiceDelayTime>
+          <Repeat>false</Repeat>
+          <PDNType>IPv4</PDNType>
+          <CallDuration>33000</CallDuration>
+          <InitialCallDelay>1000</InitialCallDelay>
+          <AllowDelayBetweenCalls>true</AllowDelayBetweenCalls>
+          <BHCA>38</BHCA>
+          <MobileOriginatedPattern>Even</MobileOriginatedPattern>
+          <DestinationCallUriIsSIP>true</DestinationCallUriIsSIP>
+          <VoipMediaProfile>
+            <MediaType>Voice</MediaType>
+            <RTPData>Full Duplex</RTPData>
+            <RTCP>true</RTCP>
+            <SilenceSuppression>true</SilenceSuppression>
+            <SilenceRatio>40</SilenceRatio>
+            <SilenceLength>50000</SilenceLength>
+            <Codec>
+              <Name>GSM Codec</Name>
+              <UsedFor>Voice</UsedFor>
+              <EncodingName>GSM</EncodingName>
+              <MediaType>Audio</MediaType>
+              <PayloadType>0</PayloadType>
+              <PayloadSize>320</PayloadSize>
+              <MsPacket>20</MsPacket>
+              <StreamRate>1024</StreamRate>
+              <Frequency>8000</Frequency>
+              <Channels>1</Channels>
+            </Codec>
+          </VoipMediaProfile>
+          <SipServer>
+            <IPAddress>99.99.99.2</IPAddress>
+            <UserName>44123456789012+%UE_ID%</UserName>
+            <Password>password</Password>
+            <Domain>testDomain.com</Domain>
+          </SipServer>
+        </MyTraffic>
+      </TrafficSquad>
+    </Mix>
+    <DurationType>Percentage</DurationType>
+    <MaxDuration>3600</MaxDuration>
+    <TrafficMixProperties>
+      <SyncApplicationsStart>false</SyncApplicationsStart>
+      <StartDelay>10</StartDelay>
+      <AttachTimeout>0</AttachTimeout>
+    </TrafficMixProperties>
+  </TrafficMixConfig>
+  <ImsiRanges>
+    <StartIMSI>234010</StartIMSI>
+    <EndIMSI>252009</EndIMSI>
+    <DeltaIMSI>1</DeltaIMSI>
+    <MNCLength>2</MNCLength>
+  </ImsiRanges>
+  <GtpCollection>
+    <Name>UEs Staggered</Name>
+    <AttachStartDelay>0</AttachStartDelay>
+    <AttachDuration>0</AttachDuration>
+    <DetachDuration>0</DetachDuration>
+    <TimeDistribution>-1</TimeDistribution>
+    <StaggerTime>1</StaggerTime>
+    <ServiceDelayTime>0</ServiceDelayTime>
+    <ServiceDuration>0</ServiceDuration>
+    <ServiceRepeat>false</ServiceRepeat>
+    <DetachType>SwitchOff</DetachType>
+    <Guid>97a67823-6258-4edf-a360-417c533f7a0d</Guid>
+  </GtpCollection>
+  <CampaignId>0f7e154c-de69-4dd7-b2f2-8b19a142da0c</CampaignId>
+  <Imported>false</Imported>
+  <BearerResourcesCollection>
+    <Name>None</Name>
+    <BearerCollection />
+    <UniqueId>00000000-0000-0000-0000-000000000000</UniqueId>
+  </BearerResourcesCollection>
+  <ScriptName />
+  <UserParameterStore>
+    <ParameterFilename />
+    <ParseTime />
+    <NumberOfUes>0</NumberOfUes>
+    <Titles />
+    <UeList />
+    <ImsiList />
+    <MncLengthList />
+    <SelectedPlmnList />
+    <KList />
+    <OpList />
+    <OpcProvidedList />
+    <C1List />
+    <C2List />
+    <C3List />
+    <C4List />
+    <C5List />
+    <R1List />
+    <R2List />
+    <R3List />
+    <R4List />
+    <R5List />
+    <ImeiList />
+    <ImeiSvList />
+    <GutiList />
+    <ErrorString />
+  </UserParameterStore>
+  <ReuseImsisPerTest>true</ReuseImsisPerTest>
+  <NumberUeReceiveAntenna>1</NumberUeReceiveAntenna>
+  <SubscriberProfileCollection>
+    <Name>Default</Name>
+    <Guid>44e001b4-5a67-4814-a7e4-1370fd73acdd</Guid>
+    <UserParameterStore>
+      <ParameterFilename />
+      <ParseTime />
+      <NumberOfUes>0</NumberOfUes>
+      <Titles />
+      <UeList />
+      <ImsiList />
+      <MncLengthList />
+      <SelectedPlmnList />
+      <KList />
+      <OpList />
+      <OpcProvidedList />
+      <C1List />
+      <C2List />
+      <C3List />
+      <C4List />
+      <C5List />
+      <R1List />
+      <R2List />
+      <R3List />
+      <R4List />
+      <R5List />
+      <ImeiList />
+      <ImeiSvList />
+      <GutiList />
+      <ErrorString />
+    </UserParameterStore>
+    <ImsiRanges>
+      <ImsiRange>
+        <StartIMSI>234010</StartIMSI>
+        <EndIMSI>252009</EndIMSI>
+        <DeltaIMSI>1</DeltaIMSI>
+        <MNCLength>2</MNCLength>
+      </ImsiRange>
+    </ImsiRanges>
+    <PlmnId />
+    <NasIdentities>
+      <IMEI />
+      <IMEI_SV />
+      <GUTI />
+      <Transmit14DigitImei>false</Transmit14DigitImei>
+    </NasIdentities>
+    <USIMSettings>
+      <UseLastRPLMN>true</UseLastRPLMN>
+      <ResetUSIM>false</ResetUSIM>
+      <AuthenticationKey>FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF</AuthenticationKey>
+      <TestUSIM>true</TestUSIM>
+      <OP />
+      <OPcProvided>false</OPcProvided>
+      <C1 />
+      <C2 />
+      <C3 />
+      <C4 />
+      <C5 />
+      <R1 />
+      <R2 />
+      <R3 />
+      <R4 />
+      <R5 />
+      <AccessControlClass />
+      <AccessControlSpecialCategories />
+      <SMSSettings>
+        <SMC_Address>9988776655</SMC_Address>
+        <ValidityPeriod>TwelveHours</ValidityPeriod>
+      </SMSSettings>
+      <PLMNConfigs />
+    </USIMSettings>
+  </SubscriberProfileCollection>
+  <Contour>
+    <DownLink>
+      <P_Tx>15</P_Tx>
+      <PathLoss>40.69921094859923</PathLoss>
+      <ChanProfile>AWGN</ChanProfile>
+      <Gain>0</Gain>
+      <I_OC>-105</I_OC>
+      <IocName>Custom</IocName>
+      <TxMode>Closed_Loop</TxMode>
+      <Mcs>0--5</Mcs>
+      <Bandwidth>20MHz</Bandwidth>
+      <PdcchFormat>0</PdcchFormat>
+    </DownLink>
+    <UpLink>
+      <P0_Nominal_PUSCH>-87</P0_Nominal_PUSCH>
+      <P0_Ue_PUSCH>0</P0_Ue_PUSCH>
+      <P_Offset_PUSCH>80</P_Offset_PUSCH>
+      <P0_Nominal_PUCCH>-100</P0_Nominal_PUCCH>
+      <P0_Ue_PUCCH>0</P0_Ue_PUCCH>
+      <P_Offset_PUCCH>80</P_Offset_PUCCH>
+      <Alpha>0.8</Alpha>
+      <PathLoss>40.69921094859923</PathLoss>
+      <Ul_N>0</Ul_N>
+      <Ul_G>NarrowBand</Ul_G>
+      <ChanProfile>AWGN</ChanProfile>
+    </UpLink>
+    <IsULFadingEnabled>true</IsULFadingEnabled>
+  </Contour>
+  <Tests>
+    <Test TestCaseId="524dd366-074a-43a5-8017-274a932a6175">
+      <ProtocolConfigurationSettings>
+        <NasMsgToView>true</NasMsgToView>
+        <RrcStateToView>false</RrcStateToView>
+        <RrcMsgToView>true</RrcMsgToView>
+        <NasMsgToDisk>true</NasMsgToDisk>
+        <RrcStateToDisk>false</RrcStateToDisk>
+        <RrcMsgToDisk>true</RrcMsgToDisk>
+      </ProtocolConfigurationSettings>
+      <IsTestSelected>true</IsTestSelected>
+      <IsUnFrozen>true</IsUnFrozen>
+      <ResetAtStart>false</ResetAtStart>
+      <RbotAtStart>false</RbotAtStart>
+      <testName>Handover</testName>
+      <Comments>Created on 6/15/2016</Comments>
+      <ProvisioningEnabled>true</ProvisioningEnabled>
+      <MonitorAndLogConfig>
+        <LogAndViewCommands>DEFAULT</LogAndViewCommands>
+        <SetDockingCommand>DEFAULT</SetDockingCommand>
+      </MonitorAndLogConfig>
+      <PassFailCriteria>
+        <NumberOfUEsApplicableForValues>Test Case</NumberOfUEsApplicableForValues>
+        <Thresholds>
+          <ThresholdEvent>
+            <Name>THRESHOLD_0</Name>
+            <Id>0</Id>
+            <Selected>false</Selected>
+            <Events>
+              <Event>
+                <Checked>false</Checked>
+                <Name>PHY_SYNC_LOSS</Name>
+                <Alias>PHY SYNC LOSS</Alias>
+                <EventType>L1 Errors</EventType>
+                <Condition>&gt;</Condition>
+                <Value>0</Value>
+              </Event>
+              <Event>
+                <Checked>false</Checked>
+                <Name>MAC_RACH_UE_ID_MISMATCH</Name>
+                <Alias>MAC RACH UE ID MISMATCH</Alias>
+                <EventType>MAC Errors</EventType>
+                <Condition>&gt;</Condition>
+                <Value>0</Value>
+              </Event>
+              <Event>
+                <Checked>false</Checked>
+                <Name>MAC_RACH_UE_ID_MISSING</Name>
+                <Alias>MAC RACH_UE ID MISSING</Alias>
+                <EventType>MAC Errors</EventType>
+                <Condition>&gt;</Condition>
+                <Value>0</Value>
+              </Event>
+              <Event>
+                <Checked>false</Checked>
+                <Name>MAC_RACH_CONTENTION_RESOLUTION_TIMEOUT</Name>
+                <Alias>MAC RACH CONTENTION RESOLUTION TIMEOUT</Alias>
+                <EventType>MAC Errors</EventType>
+                <Condition>&gt;</Condition>
+                <Value>0</Value>
+              </Event>
+              <Event>
+                <Checked>false</Checked>
+                <Name>MAC_RACH_MAX_PREAMBLES_EXCEEDED</Name>
+                <Alias>MAC RACH MAX PREAMBLES EXCEEDED</Alias>
+                <EventType>MAC Errors</EventType>
+                <Condition>&gt;</Condition>
+                <Value>0</Value>
+              </Event>
+              <Event>
+                <Checked>false</Checked>
+                <Name>MAC_RACH_TCRNTI_ALREADY_ASSIGNED</Name>
+                <Alias>MAC RACH TCRNTI ALREADY ASSIGNED</Alias>
+                <EventType>MAC Errors</EventType>
+                <Condition>&gt;</Condition>
+                <Value>0</Value>
+              </Event>
+              <Event>
+                <Checked>false</Checked>
+                <Name>MAC_TA_TIMEOUT</Name>
+                <Alias>MAC TIMING ADVANCE TIMEOUT</Alias>
+                <EventType>MAC Errors</EventType>
+                <Condition>&gt;</Condition>
+                <Value>0</Value>
+              </Event>
+              <Event>
+                <Checked>false</Checked>
+                <Name>MAC_MAX_SR</Name>
+                <Alias>MAC MAX SCHEDULING REQUEST</Alias>
+                <EventType>MAC Errors</EventType>
+                <Condition>&gt;</Condition>
+                <Value>0</Value>
+              </Event>
+              <Event>
+                <Checked>false</Checked>
+                <Name>RLC_UL_AM_MAX_RETRANSMISSSIONS</Name>
+                <Alias>RLC UL AM MAX RETRANSMISSSIONS</Alias>
+                <EventType>RLC Errors</EventType>
+                <Condition>&gt;</Condition>
+                <Value>0</Value>
+              </Event>
+              <Event>
+                <Checked>false</Checked>
+                <Name>RRC_CONNECTION_REQUEST_COUNT</Name>
+                <Alias>RRC CONNECTION REQUEST COUNT</Alias>
+                <EventType>RRC Procedure Count</EventType>
+                <Condition>&gt;</Condition>
+                <Value>0</Value>
+              </Event>
+              <Event>
+                <Checked>false</Checked>
+                <Name>RRC_CONNECTION_REQUEST_SUCCESS</Name>
+                <Alias>RRC CONNECTION REQUEST SUCCESS</Alias>
+                <EventType>RRC Procedure Success</EventType>
+                <Condition>&lt;</Condition>
+                <Value>0</Value>
+              </Event>
+              <Event>
+                <Checked>false</Checked>
+                <Name>RRC_CONNECTION_REQUEST_FAILURE</Name>
+                <Alias>RRC CONNECTION REQUEST FAILURE</Alias>
+                <EventType>RRC Procedure Failure</EventType>
+                <Condition>&gt;</Condition>
+                <Value>0</Value>
+              </Event>
+              <Event>
+                <Checked>false</Checked>
+                <Name>RRC_CONNECTION_REESTABLISHMENT_COUNT</Name>
+                <Alias>RRC CONNECTION REESTABLISHMENT COUNT</Alias>
+                <EventType>RRC Procedure Count</EventType>
+                <Condition>&gt;</Condition>
+                <Value>0</Value>
+              </Event>
+              <Event>
+                <Checked>false</Checked>
+                <Name>RRC_CONNECTION_REESTABLISHMENT_SUCCESS</Name>
+                <Alias>RRC CONNECTION REESTABLISHMENT SUCCESS</Alias>
+                <EventType>RRC Procedure Success</EventType>
+                <Condition>&lt;</Condition>
+                <Value>0</Value>
+              </Event>
+              <Event>
+                <Checked>false</Checked>
+                <Name>RRC_CONNECTION_REESTABLISHMENT_FAILURE</Name>
+                <Alias>RRC CONNECTION REESTABLISHMENT FAILURE</Alias>
+                <EventType>RRC Procedure Failure</EventType>
+                <Condition>&gt;</Condition>
+                <Value>0</Value>
+              </Event>
+              <Event>
+                <Checked>false</Checked>
+                <Name>RRC_CONNECTION_RELEASE_COUNT</Name>
+                <Alias>RRC CONNECTION RELEASE COUNT</Alias>
+                <EventType>RRC Procedure Count</EventType>
+                <Condition>&gt;</Condition>
+                <Value>0</Value>
+              </Event>
+              <Event>
+                <Checked>false</Checked>
+                <Name>RRC_CONNECTION_RELEASE_SUCCESS</Name>
+                <Alias>RRC CONNECTION RELEASE SUCCESS</Alias>
+                <EventType>RRC Procedure Success</EventType>
+                <Condition>&lt;</Condition>
+                <Value>0</Value>
+              </Event>
+              <Event>
+                <Checked>false</Checked>
+                <Name>RRC_CONNECTION_RELEASE_FAILURE</Name>
+                <Alias>RRC CONNECTION RELEASE FAILURE</Alias>
+                <EventType>RRC Procedure Failure</EventType>
+                <Condition>&gt;</Condition>
+                <Value>0</Value>
+              </Event>
+              <Event>
+                <Checked>false</Checked>
+                <Name>HANDOVER_COUNT</Name>
+                <Alias>HANDOVER COUNT</Alias>
+                <EventType>RRC Procedure Count</EventType>
+                <Condition>&gt;</Condition>
+                <Value>0</Value>
+              </Event>
+              <Event>
+                <Checked>false</Checked>
+                <Name>HANDOVER_SUCCESS</Name>
+                <Alias>HANDOVER SUCCESS</Alias>
+                <EventType>RRC Procedure Success</EventType>
+                <Condition>&lt;</Condition>
+                <Value>0</Value>
+              </Event>
+              <Event>
+                <Checked>false</Checked>
+                <Name>HANDOVER_FAILURE</Name>
+                <Alias>HANDOVER FAILURE</Alias>
+                <EventType>RRC Procedure Failure</EventType>
+                <Condition>&gt;</Condition>
+                <Value>0</Value>
+              </Event>
+              <Event>
+                <Checked>false</Checked>
+                <Name>PAGING_COUNT</Name>
+                <Alias>PAGING COUNT</Alias>
+                <EventType>RRC Procedure Count</EventType>
+                <Condition>&gt;</Condition>
+                <Value>0</Value>
+              </Event>
+              <Event>
+                <Checked>false</Checked>
+                <Name>PAGING_SUCCESS</Name>
+                <Alias>PAGING SUCCESS</Alias>
+                <EventType>RRC Procedure Success</EventType>
+                <Condition>&lt;</Condition>
+                <Value>0</Value>
+              </Event>
+              <Event>
+                <Checked>false</Checked>
+                <Name>PAGING_FAILURE</Name>
+                <Alias>PAGING FAILURE</Alias>
+                <EventType>RRC Procedure Failure</EventType>
+                <Condition>&gt;</Condition>
+                <Value>0</Value>
+              </Event>
+              <Event>
+                <Checked>false</Checked>
+                <Name>MEASUREMENT_REPORT_COUNT</Name>
+                <Alias>MEASUREMENT REPORT COUNT</Alias>
+                <EventType>RRC Procedure Count</EventType>
+                <Condition>&gt;</Condition>
+                <Value>0</Value>
+              </Event>
+              <Event>
+                <Checked>false</Checked>
+                <Name>MEASUREMENT_REPORT_SUCCESS</Name>
+                <Alias>MEASUREMENT REPORT SUCCESS</Alias>
+                <EventType>RRC Procedure Success</EventType>
+                <Condition>&lt;</Condition>
+                <Value>0</Value>
+              </Event>
+              <Event>
+                <Checked>false</Checked>
+                <Name>MEASUREMENT_REPORT_FAILURE</Name>
+                <Alias>MEASUREMENT REPORT FAILURE</Alias>
+                <EventType>RRC Procedure Failure</EventType>
+                <Condition>&gt;</Condition>
+                <Value>0</Value>
+              </Event>
+              <Event>
+                <Checked>false</Checked>
+                <Name>RRC_UNABLE_TO_CONNECT_NO_UE_SLOT</Name>
+                <Alias>RRC UNABLE TO CONNECT NO UE SLOT</Alias>
+                <EventType>RRC Procedure Failure</EventType>
+                <Condition>&gt;</Condition>
+                <Value>0</Value>
+              </Event>
+              <Event>
+                <Checked>false</Checked>
+                <Name>RRC_UNABLE_TO_HANDOVER_NO_UE_SLOT</Name>
+                <Alias>RRC UNABLE TO HANDOVER NO UE SLOT</Alias>
+                <EventType>RRC Procedure Failure</EventType>
+                <Condition>&gt;</Condition>
+                <Value>0</Value>
+              </Event>
+              <Event>
+                <Checked>false</Checked>
+                <Name>RRC_CONNECTION_RECONFIGURATION_FAILURE</Name>
+                <Alias>RRC CONNECTION RECONFIGURATION FAILURE</Alias>
+                <EventType>RRC Procedure Failure</EventType>
+                <Condition>&gt;</Condition>
+                <Value>0</Value>
+              </Event>
+              <Event>
+                <Checked>false</Checked>
+                <Name>ATTACH_COUNT</Name>
+                <Alias>ATTACH COUNT</Alias>
+                <EventType>NAS Procedure Count</EventType>
+                <Condition>&gt;</Condition>
+                <Value>0</Value>
+              </Event>
+              <Event>
+                <Checked>false</Checked>
+                <Name>ATTACH_SUCCESS</Name>
+                <Alias>ATTACH SUCCESS</Alias>
+                <EventType>NAS Procedure Success</EventType>
+                <Condition>&lt;</Condition>
+                <Value>0</Value>
+              </Event>
+              <Event>
+                <Checked>false</Checked>
+                <Name>ATTACH_FAILURE</Name>
+                <Alias>ATTACH FAILURE</Alias>
+                <EventType>NAS Procedure Failure</EventType>
+                <Condition>&gt;</Condition>
+                <Value>0</Value>
+              </Event>
+              <Event>
+                <Checked>false</Checked>
+                <Name>DETACH_COUNT</Name>
+                <Alias>DETACH COUNT</Alias>
+                <EventType>NAS Procedure Count</EventType>
+                <Condition>&gt;</Condition>
+                <Value>0</Value>
+              </Event>
+              <Event>
+                <Checked>false</Checked>
+                <Name>DETACH_SUCCESS</Name>
+                <Alias>DETACH SUCCESS</Alias>
+                <EventType>NAS Procedure Success</EventType>
+                <Condition>&lt;</Condition>
+                <Value>0</Value>
+              </Event>
+              <Event>
+                <Checked>false</Checked>
+                <Name>DETACH_FAILURE</Name>
+                <Alias>DETACH FAILURE</Alias>
+                <EventType>NAS Procedure Failure</EventType>
+                <Condition>&gt;</Condition>
+                <Value>0</Value>
+              </Event>
+              <Event>
+                <Checked>false</Checked>
+                <Name>TAU_COUNT</Name>
+                <Alias>TRACKING AREA UPDATE COUNT</Alias>
+                <EventType>NAS Procedure Count</EventType>
+                <Condition>&gt;</Condition>
+                <Value>0</Value>
+              </Event>
+              <Event>
+                <Checked>false</Checked>
+                <Name>TAU_SUCCESS</Name>
+                <Alias>TRACKING AREA UPDATE SUCCESS</Alias>
+                <EventType>NAS Procedure Success</EventType>
+                <Condition>&lt;</Condition>
+                <Value>0</Value>
+              </Event>
+              <Event>
+                <Checked>false</Checked>
+                <Name>TAU_FAILURE</Name>
+                <Alias>TRACKING AREA UPDATE FAILURE</Alias>
+                <EventType>NAS Procedure Failure</EventType>
+                <Condition>&gt;</Condition>
+                <Value>0</Value>
+              </Event>
+              <Event>
+                <Checked>false</Checked>
+                <Name>SERVICE_REQUEST_COUNT</Name>
+                <Alias>SERVICE REQUEST COUNT</Alias>
+                <EventType>NAS Procedure Count</EventType>
+                <Condition>&gt;</Condition>
+                <Value>0</Value>
+              </Event>
+              <Event>
+                <Checked>false</Checked>
+                <Name>SERVICE_REQUEST_SUCCESS</Name>
+                <Alias>SERVICE REQUEST SUCCESS</Alias>
+                <EventType>NAS Procedure Success</EventType>
+                <Condition>&lt;</Condition>
+                <Value>0</Value>
+              </Event>
+              <Event>
+                <Checked>false</Checked>
+                <Name>SERVICE_REQUEST_FAILURE</Name>
+                <Alias>SERVICE REQUEST FAILURE</Alias>
+                <EventType>NAS Procedure Failure</EventType>
+                <Condition>&gt;</Condition>
+                <Value>0</Value>
+              </Event>
+              <Event>
+                <Checked>false</Checked>
+                <Name>AUTHENTICATION_REQUEST_COUNT</Name>
+                <Alias>AUTHENTICATION REQUEST COUNT</Alias>
+                <EventType>NAS Procedure Count</EventType>
+                <Condition>&gt;</Condition>
+                <Value>0</Value>
+              </Event>
+              <Event>
+                <Checked>false</Checked>
+                <Name>AUTHENTICATION_REQUEST_SUCCESS</Name>
+                <Alias>AUTHENTICATION REQUEST SUCCESS</Alias>
+                <EventType>NAS Procedure Success</EventType>
+                <Condition>&lt;</Condition>
+                <Value>0</Value>
+              </Event>
+              <Event>
+                <Checked>false</Checked>
+                <Name>AUTHENTICATION_REQUEST_FAILURE</Name>
+                <Alias>AUTHENTICATION REQUEST FAILURE</Alias>
+                <EventType>NAS Procedure Failure</EventType>
+                <Condition>&gt;</Condition>
+                <Value>0</Value>
+              </Event>
+              <Event>
+                <Checked>false</Checked>
+                <Name>SECURITY_MODE_COUNT</Name>
+                <Alias>SECURITY MODE COUNT</Alias>
+                <EventType>NAS Procedure Count</EventType>
+                <Condition>&gt;</Condition>
+                <Value>0</Value>
+              </Event>
+              <Event>
+                <Checked>false</Checked>
+                <Name>SECURITY_MODE_SUCCESS</Name>
+                <Alias>SECURITY MODE SUCCESS</Alias>
+                <EventType>NAS Procedure Success</EventType>
+                <Condition>&lt;</Condition>
+                <Value>0</Value>
+              </Event>
+              <Event>
+                <Checked>false</Checked>
+                <Name>SECURITY_MODE_FAILURE</Name>
+                <Alias>SECURITY MODE FAILURE</Alias>
+                <EventType>NAS Procedure Failure</EventType>
+                <Condition>&gt;</Condition>
+                <Value>0</Value>
+              </Event>
+              <Event>
+                <Checked>false</Checked>
+                <Name>PDN_CONNECTIVITY_REQUEST_COUNT</Name>
+                <Alias>PDN CONNECTIVITY REQUEST COUNT</Alias>
+                <EventType>NAS Procedure Count</EventType>
+                <Condition>&gt;</Condition>
+                <Value>0</Value>
+              </Event>
+              <Event>
+                <Checked>false</Checked>
+                <Name>PDN_CONNECTIVITY_REQUEST_SUCCESS</Name>
+                <Alias>PDN CONNECTIVITY REQUEST SUCCESS</Alias>
+                <EventType>NAS Procedure Success</EventType>
+                <Condition>&lt;</Condition>
+                <Value>0</Value>
+              </Event>
+              <Event>
+                <Checked>false</Checked>
+                <Name>PDN_CONNECTIVITY_REQUEST_FAILURE</Name>
+                <Alias>PDN CONNECTIVITY REQUEST FAILURE</Alias>
+                <EventType>NAS Procedure Failure</EventType>
+                <Condition>&gt;</Condition>
+                <Value>0</Value>
+              </Event>
+              <Event>
+                <Checked>false</Checked>
+                <Name>PDN_DISCONNECT_REQUEST_COUNT</Name>
+                <Alias>PDN DISCONNECT REQUEST COUNT</Alias>
+                <EventType>NAS Procedure Count</EventType>
+                <Condition>&gt;</Condition>
+                <Value>0</Value>
+              </Event>
+              <Event>
+                <Checked>false</Checked>
+                <Name>PDN_DISCONNECT_REQUEST_SUCCESS</Name>
+                <Alias>PDN DISCONNECT REQUEST SUCCESS</Alias>
+                <EventType>NAS Procedure Success</EventType>
+                <Condition>&lt;</Condition>
+                <Value>0</Value>
+              </Event>
+              <Event>
+                <Checked>false</Checked>
+                <Name>PDN_DISCONNECT_REQUEST_FAILURE</Name>
+                <Alias>PDN DISCONNECT REQUEST FAILURE</Alias>
+                <EventType>NAS Procedure Failure</EventType>
+                <Condition>&gt;</Condition>
+                <Value>0</Value>
+              </Event>
+              <Event>
+                <Checked>false</Checked>
+                <Name>BEARER_RESOURCE_ALLOCATION_REQUEST_COUNT</Name>
+                <Alias>BEARER RESOURCE ALLOCATION REQUEST COUNT</Alias>
+                <EventType>NAS Procedure Count</EventType>
+                <Condition>&gt;</Condition>
+                <Value>0</Value>
+              </Event>
+              <Event>
+                <Checked>false</Checked>
+                <Name>BEARER_RESOURCE_ALLOCATION_REQUEST_SUCCESS</Name>
+                <Alias>BEARER RESOURCE ALLOCATION REQUEST SUCCESS</Alias>
+                <EventType>NAS Procedure Success</EventType>
+                <Condition>&lt;</Condition>
+                <Value>0</Value>
+              </Event>
+              <Event>
+                <Checked>false</Checked>
+                <Name>BEARER_RESOURCE_ALLOCATION_REQUEST_FAILURE</Name>
+                <Alias>BEARER RESOURCE ALLOCATION REQUEST FAILURE</Alias>
+                <EventType>NAS Procedure Failure</EventType>
+                <Condition>&gt;</Condition>
+                <Value>0</Value>
+              </Event>
+              <Event>
+                <Checked>false</Checked>
+                <Name>BEARER_RESOURCE_MODIFICATION_REQUEST_COUNT</Name>
+                <Alias>BEARER RESOURCE MODIFICATION REQUEST COUNT</Alias>
+                <EventType>NAS Procedure Count</EventType>
+                <Condition>&gt;</Condition>
+                <Value>0</Value>
+              </Event>
+              <Event>
+                <Checked>false</Checked>
+                <Name>BEARER_RESOURCE_MODIFICATION_REQUEST_SUCCESS</Name>
+                <Alias>BEARER RESOURCE MODIFICATION REQUEST SUCCESS</Alias>
+                <EventType>NAS Procedure Success</EventType>
+                <Condition>&lt;</Condition>
+                <Value>0</Value>
+              </Event>
+              <Event>
+                <Checked>false</Checked>
+                <Name>BEARER_RESOURCE_MODIFICATION_REQUEST_FAILURE</Name>
+                <Alias>BEARER RESOURCE MODIFICATION REQUEST FAILURE</Alias>
+                <EventType>NAS Procedure Failure</EventType>
+                <Condition>&gt;</Condition>
+                <Value>0</Value>
+              </Event>
+              <Event>
+                <Checked>false</Checked>
+                <Name>BEARER_RESOURCE_DELETE_REQUEST_COUNT</Name>
+                <Alias>BEARER RESOURCE DELETE REQUEST COUNT</Alias>
+                <EventType>NAS Procedure Count</EventType>
+                <Condition>&gt;</Condition>
+                <Value>0</Value>
+              </Event>
+              <Event>
+                <Checked>false</Checked>
+                <Name>BEARER_RESOURCE_DELETE_REQUEST_SUCCESS</Name>
+                <Alias>BEARER RESOURCE DELETE REQUEST SUCCESS</Alias>
+                <EventType>NAS Procedure Success</EventType>
+                <Condition>&lt;</Condition>
+                <Value>0</Value>
+              </Event>
+              <Event>
+                <Checked>false</Checked>
+                <Name>BEARER_RESOURCE_DELETE_REQUEST_FAILURE</Name>
+                <Alias>BEARER RESOURCE DELETE REQUEST FAILURE</Alias>
+                <EventType>NAS Procedure Failure</EventType>
+                <Condition>&gt;</Condition>
+                <Value>0</Value>
+              </Event>
+              <Event>
+                <Checked>false</Checked>
+                <Name>ACTIVATE_DEDICATED_BEARER_REQUEST_COUNT</Name>
+                <Alias>ACTIVATE DEDICATED BEARER REQUEST COUNT</Alias>
+                <EventType>NAS Procedure Count</EventType>
+                <Condition>&gt;</Condition>
+                <Value>0</Value>
+              </Event>
+              <Event>
+                <Checked>false</Checked>
+                <Name>ACTIVATE_DEDICATED_BEARER_REQUEST_SUCCESS</Name>
+                <Alias>ACTIVATE DEDICATED BEARER REQUEST SUCCESS</Alias>
+                <EventType>NAS Procedure Success</EventType>
+                <Condition>&lt;</Condition>
+                <Value>0</Value>
+              </Event>
+              <Event>
+                <Checked>false</Checked>
+                <Name>ACTIVATE_DEDICATED_BEARER_REQUEST_FAILURE</Name>
+                <Alias>ACTIVATE DEDICATED BEARER REQUEST FAILURE</Alias>
+                <EventType>NAS Procedure Failure</EventType>
+                <Condition>&gt;</Condition>
+                <Value>0</Value>
+              </Event>
+              <Event>
+                <Checked>false</Checked>
+                <Name>DEACTIVATE_BEARER_REQUEST_COUNT</Name>
+                <Alias>DEACTIVATE BEARER REQUEST COUNT</Alias>
+                <EventType>NAS Procedure Count</EventType>
+                <Condition>&gt;</Condition>
+                <Value>0</Value>
+              </Event>
+              <Event>
+                <Checked>false</Checked>
+                <Name>DEACTIVATE_BEARER_REQUEST_SUCCESS</Name>
+                <Alias>DEACTIVATE BEARER REQUEST SUCCESS</Alias>
+                <EventType>NAS Procedure Success</EventType>
+                <Condition>&lt;</Condition>
+                <Value>0</Value>
+              </Event>
+              <Event>
+                <Checked>false</Checked>
+                <Name>DEACTIVATE_BEARER_REQUEST_FAILURE</Name>
+                <Alias>DEACTIVATE BEARER REQUEST FAILURE</Alias>
+                <EventType>NAS Procedure Failure</EventType>
+                <Condition>&gt;</Condition>
+                <Value>0</Value>
+              </Event>
+            </Events>
+            <FilterSelectedEvents>false</FilterSelectedEvents>
+            <isAndSelected>false</isAndSelected>
+          </ThresholdEvent>
+        </Thresholds>
+      </PassFailCriteria>
+      <gcGroupCollection>
+        <Group>
+          <IsUnFrozen>true</IsUnFrozen>
+          <IsGroupSelected>true</IsGroupSelected>
+          <SupportGeran>false</SupportGeran>
+          <SupportWcdma>false</SupportWcdma>
+          <SupportLte>true</SupportLte>
+          <GroupName>NewGroup</GroupName>
+          <MobilityAndRouteSegmentCollection>
+            <MobilityAndRouteSegment>
+              <Duration_s>-1</Duration_s>
+              <RouteIndex_SerializationOnly>0</RouteIndex_SerializationOnly>
+              <RouteGuid_SerializationOnly>077efb06-bd21-4537-88fc-60330f29b90d</RouteGuid_SerializationOnly>
+              <MobilityIndex_SerializationOnly>0</MobilityIndex_SerializationOnly>
+              <MobilityGuid_SerializationOnly>61354f7c-6859-49ab-88ab-f2ceb79c168c</MobilityGuid_SerializationOnly>
+              <ToWaypointIndex>-1</ToWaypointIndex>
+            </MobilityAndRouteSegment>
+          </MobilityAndRouteSegmentCollection>
+          <GroupPercentageSize>100</GroupPercentageSize>
+          <GroupUECount>100</GroupUECount>
+          <TotalUECount>100</TotalUECount>
+          <TrafficMixIndex_SerializationOnly>0</TrafficMixIndex_SerializationOnly>
+          <TrafficMixGuid_SerializationOnly>d4125928-d8f7-4e4b-9e7b-b3ef4c072ee2</TrafficMixGuid_SerializationOnly>
+          <MobilityIndex_SerializationOnly>0</MobilityIndex_SerializationOnly>
+          <MobilityGuid_SerializationOnly>61354f7c-6859-49ab-88ab-f2ceb79c168c</MobilityGuid_SerializationOnly>
+          <RouteIndex_SerializationOnly>0</RouteIndex_SerializationOnly>
+          <RouteGuid_SerializationOnly>077efb06-bd21-4537-88fc-60330f29b90d</RouteGuid_SerializationOnly>
+          <GroupTimeProfileIndex_SerializationOnly>0</GroupTimeProfileIndex_SerializationOnly>
+          <GroupTimeProfileGuid_SerializationOnly>97a67823-6258-4edf-a360-417c533f7a0d</GroupTimeProfileGuid_SerializationOnly>
+          <SubscriberProfileIndex_SerializationOnly>0</SubscriberProfileIndex_SerializationOnly>
+          <SubscriberProfileGuid_SerializationOnly>00000000-0000-0000-0000-000000000000</SubscriberProfileGuid_SerializationOnly>
+          <PHYSettings>
+            <UeCategory>2</UeCategory>
+            <DownlinkUeCategory>2</DownlinkUeCategory>
+            <UplinkUeCategory>2</UplinkUeCategory>
+            <NumUeReceiveAntennae>1</NumUeReceiveAntennae>
+            <EUTRAVariant>FDDTDD</EUTRAVariant>
+          </PHYSettings>
+          <RRCSettings>
+            <RRCSecurityOptions>2</RRCSecurityOptions>
+            <AccessStratumRelease>NoChange</AccessStratumRelease>
+            <UECapabilityString />
+            <MeasurementCapabilities>
+              <ANRMeasurementsCapability>false</ANRMeasurementsCapability>
+              <EventB1Capability>false</EventB1Capability>
+              <UTRAMeasurementReportsCapability>false</UTRAMeasurementReportsCapability>
+              <GERANMeasurementReportsCapability>false</GERANMeasurementReportsCapability>
+              <CDMA2000MeasurementReportsCapability>false</CDMA2000MeasurementReportsCapability>
+              <InterFreqMeasurementReportsCapability>false</InterFreqMeasurementReportsCapability>
+            </MeasurementCapabilities>
+            <CellOverrideOption>No</CellOverrideOption>
+            <SelectedRadioContextId>0</SelectedRadioContextId>
+          </RRCSettings>
+          <NASSettings>
+            <NASCapabilities>
+              <NASSecurityOptions>3</NASSecurityOptions>
+              <SupportedCipheringAlgorithms>224</SupportedCipheringAlgorithms>
+              <SupportedIntegrityAlgorithms>224</SupportedIntegrityAlgorithms>
+              <NasReleaseVersion>release8</NasReleaseVersion>
+              <PreferSMSOverIP>false</PreferSMSOverIP>
+              <AttachWithIMSICapable>false</AttachWithIMSICapable>
+              <CdmaCapable>false</CdmaCapable>
+              <ImsVoiceTermination>false</ImsVoiceTermination>
+            </NASCapabilities>
+            <NASSecurityOptions>3</NASSecurityOptions>
+            <SupportedCipheringAlgorithms>224</SupportedCipheringAlgorithms>
+            <SupportedIntegrityAlgorithms>224</SupportedIntegrityAlgorithms>
+            <DRXParameters>
+              <Included>false</Included>
+              <SplitPgCycleCode>0</SplitPgCycleCode>
+              <DRXCycle>NotSpecified</DRXCycle>
+              <SupportSplitOnCCCH>true</SupportSplitOnCCCH>
+              <NonDRXTimer>0</NonDRXTimer>
+            </DRXParameters>
+            <CanSetNASIdentities>true</CanSetNASIdentities>
+            <IMEI>1234567898UE%5</IMEI>
+            <IMEI_SV>12345678987UE%5</IMEI_SV>
+            <GUTI />
+            <ProtocolConfigurationOptions>
+              <Included>false</Included>
+              <RequestDNSServerIPv4Address>false</RequestDNSServerIPv4Address>
+              <AllocateIPv4AddressViaDHCP>false</AllocateIPv4AddressViaDHCP>
+              <SendOptionsCiphered>false</SendOptionsCiphered>
+              <AccessPointName />
+              <PAPUserName />
+              <PAPPassword />
+              <ScriptCHAPAuthentication>false</ScriptCHAPAuthentication>
+              <CHAPChallengeValue>ChallengeValue</CHAPChallengeValue>
+              <CHAPChallengeName>ChallengeName</CHAPChallengeName>
+              <CHAPResponseValue>ResponseValue</CHAPResponseValue>
+              <CHAPResponseName>ResponseName</CHAPResponseName>
+            </ProtocolConfigurationOptions>
+            <ForcePLMN />
+            <UeNasGeranUtranIeList>
+              <MSNetworkCapabilityIE />
+              <MobileStationClassmark2IE />
+              <MobileStationClassmark3IE />
+              <SupportedCodecs />
+            </UeNasGeranUtranIeList>
+          </NASSettings>
+          <USIMSettings>
+            <UseLastRPLMN>true</UseLastRPLMN>
+            <ResetUSIM>false</ResetUSIM>
+            <AuthenticationKey>FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF</AuthenticationKey>
+            <TestUSIM>true</TestUSIM>
+            <OP />
+            <OPcProvided>false</OPcProvided>
+            <C1 />
+            <C2 />
+            <C3 />
+            <C4 />
+            <C5 />
+            <R1 />
+            <R2 />
+            <R3 />
+            <R4 />
+            <R5 />
+            <AccessControlClass />
+            <AccessControlSpecialCategories />
+            <SMSSettings>
+              <SMC_Address>9988776655</SMC_Address>
+              <ValidityPeriod>TwelveHours</ValidityPeriod>
+            </SMSSettings>
+            <PLMNConfigs />
+          </USIMSettings>
+          <MobilitySettings>
+            <WaypointPauseTimes />
+          </MobilitySettings>
+          <MBMSSettings>
+            <UeList />
+          </MBMSSettings>
+          <IRATSettings>
+            <SupportSRVCC>false</SupportSRVCC>
+            <SupportCSFB>false</SupportCSFB>
+            <GeranUtranCapable>false</GeranUtranCapable>
+            <SupportISR>false</SupportISR>
+            <SupportPSHO>false</SupportPSHO>
+            <ServicePreference>VoiceCentric</ServicePreference>
+            <VoicePreference>IMS_Voice_Preferred</VoicePreference>
+          </IRATSettings>
+          <GERANSettings>
+            <SupportGSM850>false</SupportGSM850>
+            <SupportPGSM>false</SupportPGSM>
+            <SupportEGSM>false</SupportEGSM>
+            <SupportGSM1800>false</SupportGSM1800>
+            <SupportGSM1900>false</SupportGSM1900>
+            <RevisionLevel>R99</RevisionLevel>
+            <UeRfPowerCapability>Class4</UeRfPowerCapability>
+            <EarlyClassmarkSendingSupport>false</EarlyClassmarkSendingSupport>
+            <SupportVAMOS>None</SupportVAMOS>
+            <SupportedCipheringAlgorithms>0</SupportedCipheringAlgorithms>
+            <SupportedCodecs>
+              <BitString>111111</BitString>
+              <gsmfrAMRWB>SUPPORTED</gsmfrAMRWB>
+              <gsmhrAMR>SUPPORTED</gsmhrAMR>
+              <gsmfrAMR>SUPPORTED</gsmfrAMR>
+              <gsmHR>SUPPORTED</gsmHR>
+              <gsmEFR>SUPPORTED</gsmEFR>
+              <gsmFR>SUPPORTED</gsmFR>
+            </SupportedCodecs>
+          </GERANSettings>
+          <WCDMASettings>
+            <_hsdschEdchCapability>none</_hsdschEdchCapability>
+            <ReleaseVersion>rel7</ReleaseVersion>
+            <HsdschEdchCapability>none</HsdschEdchCapability>
+            <HsdschPhyLayerCategory>1</HsdschPhyLayerCategory>
+            <EdchPhyLayerCategory>1</EdchPhyLayerCategory>
+            <SupportedCipheringAlgorithms>0</SupportedCipheringAlgorithms>
+            <SupportedIntegrityAlgorithms>0</SupportedIntegrityAlgorithms>
+            <UTRACapabilityString />
+            <SupportedCodecs>
+              <BitString>00000011</BitString>
+              <frAMRWB>SUPPORTED</frAMRWB>
+              <frAMR>SUPPORTED</frAMR>
+            </SupportedCodecs>
+          </WCDMASettings>
+        </Group>
+      </gcGroupCollection>
+      <testCaseDuration>
+        <Days>0</Days>
+        <Hours>1</Hours>
+        <Minutes>0</Minutes>
+        <Seconds>0</Seconds>
+      </testCaseDuration>
+      <testCaseDurationDisplayFormat>Minutes</testCaseDurationDisplayFormat>
+      <Summary />
+      <TestGroupName>Default</TestGroupName>
+      <MinUEDigits>4</MinUEDigits>
+    </Test>
+  </Tests>
+</Campaign>
