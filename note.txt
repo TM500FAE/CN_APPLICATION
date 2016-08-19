@@ -6,3 +6,5 @@
 2. 安装git软件；
 3. 添加SSH秘钥；
 4. 使用语句 git clone HTTP 地址，将文件checkout；
+
+5. good luck everyone!!
