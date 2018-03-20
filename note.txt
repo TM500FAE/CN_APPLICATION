@@ -1,10 +1,11 @@
-1. µÇÂ½ github.com
+1. ç™»é™† github.com
 
-   ÓÃ»§Ãû£º  gitForTM500@163.com
-   ÃÜÂë  £º  tm500fae
+   ç”¨æˆ·åï¼š  gitForTM500@163.com
+   å¯†ç   ï¼š  tm500fae
    
-2. °²×°gitÈí¼ş£»
-3. Ìí¼ÓSSHÃØÔ¿£»
-4. Ê¹ÓÃÓï¾ä git clone HTTP µØÖ·£¬½«ÎÄ¼şcheckout£»
+2. å®‰è£…gitè½¯ä»¶ï¼›
+3. æ·»åŠ SSHç§˜é’¥ï¼›
+4. ä½¿ç”¨è¯­å¥ git clone HTTP åœ°å€ï¼Œå°†æ–‡ä»¶checkoutï¼›
 
 5. good luck everyone!!
+hh
